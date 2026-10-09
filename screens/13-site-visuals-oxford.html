@@ -207,6 +207,11 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
   font-size:11px; color:#FCA5A5; line-height:1.4;
 }
 .sso-note b { display:block; margin-bottom:3px; color:#E8F1F8; font-size:11.5px; }
+
+/* v3: site evidence photos (9 Oct 2026) */
+.cam-prov { font-size:9.5px; color:#8AA0B5; margin-top:2px; line-height:1.35; }
+.cam-prov b { color:#C5D5E5; font-weight:650; }
+.pill.rec { background:rgba(0,163,224,0.14); color:#7DD3FC; border:1px solid rgba(0,163,224,0.35); }
 </style>
 <link rel="stylesheet" href="../nav.css"/>
 </head><body data-demo-site="oxford">
@@ -266,22 +271,22 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
     Map <span class="sep">/</span> Thames Valley &amp; HC <span class="sep">/</span> Oxford STW <span class="sep">/</span> <b>Site visuals</b>
   </div>
   <div class="top-actions">
-    <span class="btn-ghost">Refresh feeds</span>
-    <span class="btn-ghost cyan">Full screen</span>
+    <span class="btn-ghost">Filter by date</span>
+    <span class="btn-ghost cyan">Export evidence set</span>
   </div>
 </header>
 <div class="main">
   <div class="header-card card">
     <div class="hdr-ico"><svg><use href="#i-cam"/></svg></div>
     <div class="hdr-body">
-      <div class="hdr-kicker">Site visuals · CCTV</div>
+      <div class="hdr-kicker">Site visuals · Site evidence photos</div>
       <h1>
-        Oxford STW — demo stills
-        <span class="pill live"><i></i>LIVE</span>
+        Oxford STW: site evidence photos
         <span class="pill red">RED stress context</span>
-        <span class="pill cyan">6 cameras</span>
+        <span class="pill cyan">6 photos</span>
+        <span class="pill rec">Write-once records</span>
       </h1>
-      <div class="hdr-meta">Primary / secondary upgrade · Demo CCTV mosaic · still photos · <b>Not live TW network</b> · SSO assumed for production</div>
+      <div class="hdr-meta">Primary / secondary upgrade · Still photos captured on site by the Clerk of Works · each photo is a write-once record · <b>Not video, not a camera feed</b></div>
     </div>
   </div>
   <div class="cam-grid">
@@ -289,107 +294,107 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
       <div class="cam-feed" style="background-image:url('cctv/oxford/cam-oxf-01-main-entrance.jpg')">
         <div class="noise"></div>
         <div class="cam-overlay">
-          <span class="pill live"><i></i>LIVE</span>
         </div>
         <div class="cam-id">CAM-OXF-01</div>
-        <div class="cam-ts">09:24:18 BST</div>
+        <div class="cam-ts">12 Sep 08:40 BST</div>
       </div>
       <div class="cam-meta">
         <div class="cam-name">Main Entrance</div>
-        <div class="cam-sub">CAM-OXF-01 · Demo still</div>
+        <div class="cam-sub">CAM-OXF-01 · Site evidence photo</div>
+        <div class="cam-prov">Captured by <b>D. Hughes, Clerk of Works</b> · 12 Sep 2026 08:40 · 51.7262, -1.2203</div>
       </div>
     </div>
     <div class="cam-tile selected">
       <div class="cam-feed" style="background-image:url('cctv/oxford/cam-oxf-02-primary-settlement.jpg')">
         <div class="noise"></div>
         <div class="cam-overlay">
-          <span class="pill live"><i></i>LIVE</span>
           <span class="cam-badge red">ALERT</span>
         </div>
         <div class="cam-id">CAM-OXF-02</div>
-        <div class="cam-ts">09:24:14 BST</div>
+        <div class="cam-ts">19 Sep 11:05 BST</div>
         <div class="cam-hint">Closer look →</div>
       </div>
       <div class="cam-meta">
         <div class="cam-name">Primary Settlement</div>
-        <div class="cam-sub">CAM-OXF-02 · Demo still</div>
+        <div class="cam-sub">CAM-OXF-02 · Site evidence photo</div>
+        <div class="cam-prov">Captured by <b>L. Carter, Clerk of Works</b> · 19 Sep 2026 11:05 · 51.7249, -1.2176</div>
       </div>
     </div>
     <div class="cam-tile">
       <div class="cam-feed" style="background-image:url('cctv/oxford/cam-oxf-03-secondary-works.jpg')">
         <div class="noise"></div>
         <div class="cam-overlay">
-          <span class="pill live"><i></i>LIVE</span>
           <span class="cam-badge amber">AMBER</span>
         </div>
         <div class="cam-id">CAM-OXF-03</div>
-        <div class="cam-ts">09:24:16 BST</div>
+        <div class="cam-ts">12 Sep 13:22 BST</div>
       </div>
       <div class="cam-meta">
         <div class="cam-name">Secondary Works</div>
-        <div class="cam-sub">CAM-OXF-03 · Demo still</div>
+        <div class="cam-sub">CAM-OXF-03 · Site evidence photo</div>
+        <div class="cam-prov">Captured by <b>L. Carter, Clerk of Works</b> · 12 Sep 2026 13:22 · 51.7238, -1.2161</div>
       </div>
     </div>
     <div class="cam-tile">
       <div class="cam-feed" style="background-image:url('cctv/oxford/cam-oxf-04-site-compound.jpg')">
         <div class="noise"></div>
         <div class="cam-overlay">
-          <span class="pill live"><i></i>LIVE</span>
         </div>
         <div class="cam-id">CAM-OXF-04</div>
-        <div class="cam-ts">09:24:18 BST</div>
+        <div class="cam-ts">10 Sep 09:15 BST</div>
       </div>
       <div class="cam-meta">
         <div class="cam-name">Site Compound</div>
-        <div class="cam-sub">CAM-OXF-04 · Demo still</div>
+        <div class="cam-sub">CAM-OXF-04 · Site evidence photo</div>
+        <div class="cam-prov">Captured by <b>D. Hughes, Clerk of Works</b> · 10 Sep 2026 09:15 · 51.7255, -1.2192</div>
       </div>
     </div>
     <div class="cam-tile">
       <div class="cam-feed" style="background-image:url('cctv/oxford/cam-oxf-05-outfall-channel.jpg')">
         <div class="noise"></div>
         <div class="cam-overlay">
-          <span class="pill live"><i></i>LIVE</span>
         </div>
         <div class="cam-id">CAM-OXF-05</div>
-        <div class="cam-ts">09:24:17 BST</div>
+        <div class="cam-ts">10 Sep 10:02 BST</div>
       </div>
       <div class="cam-meta">
         <div class="cam-name">Outfall Channel</div>
-        <div class="cam-sub">CAM-OXF-05 · Demo still</div>
+        <div class="cam-sub">CAM-OXF-05 · Site evidence photo</div>
+        <div class="cam-prov">Captured by <b>D. Hughes, Clerk of Works</b> · 10 Sep 2026 10:02 · 51.7231, -1.2149</div>
       </div>
     </div>
     <div class="cam-tile">
       <div class="cam-feed" style="background-image:url('cctv/oxford/cam-oxf-06-welfare-store.jpg')">
         <div class="noise"></div>
         <div class="cam-overlay">
-          <span class="pill live"><i></i>LIVE</span>
         </div>
         <div class="cam-id">CAM-OXF-06</div>
-        <div class="cam-ts">09:24:19 BST</div>
+        <div class="cam-ts">28 Mar 16:30 BST</div>
       </div>
       <div class="cam-meta">
         <div class="cam-name">Welfare & Store</div>
-        <div class="cam-sub">CAM-OXF-06 · Demo still</div>
+        <div class="cam-sub">CAM-OXF-06 · Site evidence photo</div>
+        <div class="cam-prov">Captured by <b>D. Hughes, Clerk of Works</b> · 28 Mar 2026 16:30 · 51.7266, -1.2187</div>
       </div>
     </div>
   </div>
   <div class="side card">
-    <h3>Camera list</h3>
+    <h3>Photo index</h3>
     <div class="cam-list">
-      <div class="cam-row"><i class="dot"></i><span class="nm">Main Entrance</span><span class="st">Online</span></div>
+      <div class="cam-row"><i class="dot"></i><span class="nm">Main Entrance</span><span class="st">Logged</span></div>
       <div class="cam-row on"><i class="dot alert"></i><span class="nm">Primary Settlement</span><span class="st alert">Alert</span></div>
       <div class="cam-row"><i class="dot warn"></i><span class="nm">Secondary Works</span><span class="st warn">Attention</span></div>
-      <div class="cam-row"><i class="dot"></i><span class="nm">Site Compound</span><span class="st">Online</span></div>
-      <div class="cam-row"><i class="dot"></i><span class="nm">Outfall Channel</span><span class="st">Online</span></div>
-      <div class="cam-row"><i class="dot"></i><span class="nm">Welfare &amp; Store</span><span class="st">Online</span></div>
+      <div class="cam-row"><i class="dot"></i><span class="nm">Site Compound</span><span class="st">Logged</span></div>
+      <div class="cam-row"><i class="dot"></i><span class="nm">Outfall Channel</span><span class="st">Logged</span></div>
+      <div class="cam-row"><i class="dot"></i><span class="nm">Welfare &amp; Store</span><span class="st">Logged</span></div>
     </div>
     <div class="status-box">
-      <div class="lead">Connection status (demo)</div>
-      Edge gateway · Connected · 1 feed flagged · Latency 145 ms
+      <div class="lead">Capture summary (demo)</div>
+      6 photos · 2 Clerks of Works · 1 photo flagged · all unaltered since capture
     </div>
     <div class="sso-note">
-      <b>Login to camera network</b>
-      Production would open TW SSO / camera network session. This screen uses fictitious still photos only (not live video).
+      <b>Evidence, not surveillance</b>
+      These are still photos attached to inspection records. No video and no live feeds. Fictitious demo images.
     </div>
   </div>
 </div>

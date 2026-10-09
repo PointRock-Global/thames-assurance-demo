@@ -205,6 +205,11 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
   font-size:11px; color:#7DD3FC; line-height:1.4;
 }
 .sso-note b { display:block; margin-bottom:3px; color:#E8F1F8; font-size:11.5px; }
+
+/* v3: site evidence photos (9 Oct 2026) */
+.cam-prov { font-size:9.5px; color:#8AA0B5; margin-top:2px; line-height:1.35; }
+.cam-prov b { color:#C5D5E5; font-weight:650; }
+.pill.rec { background:rgba(0,163,224,0.14); color:#7DD3FC; border:1px solid rgba(0,163,224,0.35); }
 </style>
 <link rel="stylesheet" href="../nav.css"/>
 </head><body data-demo-site="beckton">
@@ -241,6 +246,7 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
     <div class="nav-item" data-demo-nav="programme"><svg><use href="#i-prog"/></svg>Programme</div>
     <div class="nav-item" data-demo-nav="assurance"><svg><use href="#i-shield"/></svg>Assurance</div>
     <div class="nav-item" data-demo-nav="reports"><svg><use href="#i-doc"/></svg>Reports</div>
+    <div class="nav-item" data-demo-nav="brief"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 12h6M10 15.5h6M10 19h4"/></svg>Scheme brief</div>
     <div class="nav-item" data-demo-nav="alerts"><svg><use href="#i-bell"/></svg>Alerts</div>
   </nav>
   <div class="divider"></div>
@@ -264,22 +270,22 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
     Map <span class="sep">/</span> London <span class="sep">/</span> Beckton STW <span class="sep">/</span> <b>Site visuals</b>
   </div>
   <div class="top-actions">
-    <span class="btn-ghost">Refresh feeds</span>
-    <span class="btn-ghost cyan">Full screen</span>
+    <span class="btn-ghost">Filter by date</span>
+    <span class="btn-ghost cyan">Export evidence set</span>
   </div>
 </header>
 <div class="main">
   <div class="header-card card">
     <div class="hdr-ico"><svg><use href="#i-cam"/></svg></div>
     <div class="hdr-body">
-      <div class="hdr-kicker">Site visuals · CCTV</div>
+      <div class="hdr-kicker">Site visuals · Site evidence photos</div>
       <h1>
-        Beckton STW — demo stills
-        <span class="pill live"><i></i>LIVE</span>
+        Beckton STW: site evidence photos
         <span class="pill amber">AMBER context</span>
-        <span class="pill cyan">6 cameras</span>
+        <span class="pill cyan">6 photos</span>
+        <span class="pill rec">Write-once records</span>
       </h1>
-      <div class="hdr-meta">AMP8 Sludge package · Demo CCTV mosaic · still photos · <b>Not live TW network</b> · SSO assumed for production</div>
+      <div class="hdr-meta">AMP8 Sludge package · Still photos captured on site by the Clerk of Works · each photo is a write-once record · <b>Not video, not a camera feed</b></div>
     </div>
   </div>
   <div class="cam-grid">
@@ -287,107 +293,107 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
       <div class="cam-feed" style="background-image:url('cctv/beckton/cam-bkt-01-main-gate.jpg')">
         <div class="noise"></div>
         <div class="cam-overlay">
-          <span class="pill live"><i></i>LIVE</span>
         </div>
         <div class="cam-id">CAM-BKT-01</div>
-        <div class="cam-ts">09:24:18 BST</div>
+        <div class="cam-ts">18 Sep 09:24 BST</div>
       </div>
       <div class="cam-meta">
         <div class="cam-name">Main Gate</div>
-        <div class="cam-sub">CAM-BKT-01 · Demo still</div>
+        <div class="cam-sub">CAM-BKT-01 · Site evidence photo</div>
+        <div class="cam-prov">Captured by <b>S. Patel, Clerk of Works</b> · 18 Sep 2026 09:24 · 51.5262, 0.0811</div>
       </div>
     </div>
     <div class="cam-tile">
       <div class="cam-feed" style="background-image:url('cctv/beckton/cam-bkt-02-sludge-hall.jpg')">
         <div class="noise"></div>
         <div class="cam-overlay">
-          <span class="pill live"><i></i>LIVE</span>
           <span class="cam-badge amber">AMBER</span>
         </div>
         <div class="cam-id">CAM-BKT-02</div>
-        <div class="cam-ts">09:24:17 BST</div>
+        <div class="cam-ts">18 Sep 09:42 BST</div>
         <div class="cam-hint">Closer look →</div>
       </div>
       <div class="cam-meta">
         <div class="cam-name">Sludge Hall</div>
-        <div class="cam-sub">CAM-BKT-02 · Demo still</div>
+        <div class="cam-sub">CAM-BKT-02 · Site evidence photo</div>
+        <div class="cam-prov">Captured by <b>S. Patel, Clerk of Works</b> · 18 Sep 2026 09:42 · 51.5251, 0.0852</div>
       </div>
     </div>
     <div class="cam-tile">
       <div class="cam-feed" style="background-image:url('cctv/beckton/cam-bkt-03-compound-east.jpg')">
         <div class="noise"></div>
         <div class="cam-overlay">
-          <span class="pill live"><i></i>LIVE</span>
         </div>
         <div class="cam-id">CAM-BKT-03</div>
-        <div class="cam-ts">09:24:16 BST</div>
+        <div class="cam-ts">17 Sep 15:10 BST</div>
       </div>
       <div class="cam-meta">
         <div class="cam-name">Compound East</div>
-        <div class="cam-sub">CAM-BKT-03 · Demo still</div>
+        <div class="cam-sub">CAM-BKT-03 · Site evidence photo</div>
+        <div class="cam-prov">Captured by <b>R. Mensah, Clerk of Works</b> · 17 Sep 2026 15:10 · 51.5244, 0.0879</div>
       </div>
     </div>
     <div class="cam-tile">
       <div class="cam-feed" style="background-image:url('cctv/beckton/cam-bkt-04-access-road.jpg')">
         <div class="noise"></div>
         <div class="cam-overlay">
-          <span class="pill live"><i></i>LIVE</span>
         </div>
         <div class="cam-id">CAM-BKT-04</div>
-        <div class="cam-ts">09:24:18 BST</div>
+        <div class="cam-ts">17 Sep 14:52 BST</div>
       </div>
       <div class="cam-meta">
         <div class="cam-name">Access Road</div>
-        <div class="cam-sub">CAM-BKT-04 · Demo still</div>
+        <div class="cam-sub">CAM-BKT-04 · Site evidence photo</div>
+        <div class="cam-prov">Captured by <b>R. Mensah, Clerk of Works</b> · 17 Sep 2026 14:52 · 51.5271, 0.0834</div>
       </div>
     </div>
     <div class="cam-tile">
       <div class="cam-feed" style="background-image:url('cctv/beckton/cam-bkt-05-process-train.jpg')">
         <div class="noise"></div>
         <div class="cam-overlay">
-          <span class="pill live"><i></i>LIVE</span>
           <span class="cam-badge amber">ATTENTION</span>
         </div>
         <div class="cam-id">CAM-BKT-05</div>
-        <div class="cam-ts">09:24:15 BST</div>
+        <div class="cam-ts">24 Sep 10:16 BST</div>
       </div>
       <div class="cam-meta">
         <div class="cam-name">Process Train A</div>
-        <div class="cam-sub">CAM-BKT-05 · Demo still</div>
+        <div class="cam-sub">CAM-BKT-05 · Site evidence photo</div>
+        <div class="cam-prov">Captured by <b>S. Patel, Clerk of Works</b> · 24 Sep 2026 10:16 · 51.5239, 0.0866</div>
       </div>
     </div>
     <div class="cam-tile">
       <div class="cam-feed" style="background-image:url('cctv/beckton/cam-bkt-06-welfare.jpg')">
         <div class="noise"></div>
         <div class="cam-overlay">
-          <span class="pill live"><i></i>LIVE</span>
         </div>
         <div class="cam-id">CAM-BKT-06</div>
-        <div class="cam-ts">09:24:19 BST</div>
+        <div class="cam-ts">18 Sep 08:55 BST</div>
       </div>
       <div class="cam-meta">
         <div class="cam-name">Welfare</div>
-        <div class="cam-sub">CAM-BKT-06 · Demo still</div>
+        <div class="cam-sub">CAM-BKT-06 · Site evidence photo</div>
+        <div class="cam-prov">Captured by <b>S. Patel, Clerk of Works</b> · 18 Sep 2026 08:55 · 51.5258, 0.0897</div>
       </div>
     </div>
   </div>
   <div class="side card">
-    <h3>Camera list</h3>
+    <h3>Photo index</h3>
     <div class="cam-list">
-      <div class="cam-row on"><i class="dot"></i><span class="nm">Main Gate</span><span class="st">Online</span></div>
+      <div class="cam-row on"><i class="dot"></i><span class="nm">Main Gate</span><span class="st">Logged</span></div>
       <div class="cam-row"><i class="dot warn"></i><span class="nm">Sludge Hall</span><span class="st warn">Attention</span></div>
-      <div class="cam-row"><i class="dot"></i><span class="nm">Compound East</span><span class="st">Online</span></div>
-      <div class="cam-row"><i class="dot"></i><span class="nm">Access Road</span><span class="st">Online</span></div>
+      <div class="cam-row"><i class="dot"></i><span class="nm">Compound East</span><span class="st">Logged</span></div>
+      <div class="cam-row"><i class="dot"></i><span class="nm">Access Road</span><span class="st">Logged</span></div>
       <div class="cam-row"><i class="dot warn"></i><span class="nm">Process Train A</span><span class="st warn">Attention</span></div>
-      <div class="cam-row"><i class="dot"></i><span class="nm">Welfare</span><span class="st">Online</span></div>
+      <div class="cam-row"><i class="dot"></i><span class="nm">Welfare</span><span class="st">Logged</span></div>
     </div>
     <div class="status-box">
-      <div class="lead">Connection status (demo)</div>
-      Edge gateway · Connected · Latency 120 ms · Bitrate adaptive
+      <div class="lead">Capture summary (demo)</div>
+      6 photos · 2 Clerks of Works · 17 to 24 Sep 2026 · all unaltered since capture
     </div>
     <div class="sso-note">
-      <b>Login to camera network</b>
-      Production would open TW SSO / camera network session. This screen uses fictitious still photos only (not live video).
+      <b>Evidence, not surveillance</b>
+      These are still photos attached to inspection records. No video and no live feeds. Fictitious demo images.
     </div>
   </div>
 </div>

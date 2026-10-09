@@ -252,6 +252,47 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
 }
 .link-note b { color:#E8F1F8; font-weight:700; }
 .demo-foot { font-size:9.5px; color:#6A8299; margin-top:4px; }
+
+/* v3: evidence-backed milestones (9 Oct 2026) */
+.main { grid-template-rows: auto auto 1fr !important; }
+.table-card { grid-row: 3 !important; }
+.watch-card { grid-row: 3 !important; }
+.ev-head, .ev-row {
+  display:grid; grid-template-columns: 1.5fr 1.15fr 0.8fr 1fr 1.25fr;
+  gap:8px; align-items:center;
+}
+.ev-head {
+  padding:6px 12px; font-size:9px; font-weight:700; letter-spacing:0.05em;
+  color:var(--muted); text-transform:uppercase; border-bottom:1px solid rgba(100,140,180,0.14);
+  background:rgba(8,14,24,0.35);
+}
+.ev-row { padding:11px 12px; border-bottom:1px solid rgba(100,140,180,0.07); font-size:11.5px; }
+.ev-row .title { font-weight:700; color:#E8F1F8; }
+.ev-row .title .sub { display:block; font-size:10px; font-weight:500; color:var(--muted); margin-top:2px; }
+.ev-row .muted { color:var(--muted); font-size:11px; }
+.ev-row .who { color:#D0DCE8; font-size:11px; font-weight:600; }
+.ev-row .who span { display:block; color:var(--muted); font-weight:500; font-size:9.5px; margin-top:1px; }
+.ev-st {
+  display:inline-flex; align-items:center; gap:5px; padding:3px 8px; border-radius:10px;
+  font-size:9.5px; font-weight:750; letter-spacing:0.02em;
+}
+.ev-st i { width:6px; height:6px; border-radius:50%; display:inline-block; }
+.ev-st.g { background:rgba(34,197,94,0.14); color:#86EFAC; border:1px solid rgba(34,197,94,0.35); } .ev-st.g i { background:#22C55E; }
+.ev-st.a { background:rgba(245,158,11,0.14); color:#FBBF24; border:1px solid rgba(245,158,11,0.35); } .ev-st.a i { background:#F59E0B; }
+.ev-st.r { background:rgba(239,68,68,0.14); color:#FCA5A5; border:1px solid rgba(239,68,68,0.4); } .ev-st.r i { background:#EF4444; }
+.ev-st.n { background:rgba(100,140,180,0.12); color:#A8BCCE; border:1px solid rgba(100,140,180,0.28); } .ev-st.n i { background:#6A8299; }
+.ev-link { display:flex; flex-wrap:wrap; gap:4px; align-items:center; }
+.ev-link .cnt { font-size:11px; font-weight:750; color:#E8F1F8; margin-right:2px; }
+.ev-link a, .ev-link .rec {
+  font-size:9.5px; font-weight:700; letter-spacing:0.02em; text-decoration:none;
+  padding:2px 6px; border-radius:5px; color:#7DD3FC;
+  background:rgba(0,163,224,0.1); border:1px solid rgba(0,163,224,0.28);
+}
+.ev-link .none { font-size:10.5px; color:#6A8299; }
+.scope-note { padding:8px 12px; font-size:10.5px; color:#6A8299; border-top:1px solid rgba(100,140,180,0.1); margin-top:auto; }
+.scope-note b { color:#A8BCCE; font-weight:650; }
+.hdr-side .ev-window { font-size:12px; font-weight:700; color:#E8F1F8; }
+.hdr-side .ev-window-sub { font-size:11px; color:var(--muted); margin-top:3px; }
 </style>
 <link rel="stylesheet" href="../nav.css"/>
 </head><body data-demo-site="beckton">
@@ -287,6 +328,7 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
     <div class="nav-item active" data-demo-nav="programme"><svg><use href="#i-prog"/></svg>Programme</div>
     <div class="nav-item" data-demo-nav="assurance"><svg><use href="#i-shield"/></svg>Assurance</div>
     <div class="nav-item" data-demo-nav="reports"><svg><use href="#i-doc"/></svg>Reports</div>
+    <div class="nav-item" data-demo-nav="brief"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 12h6M10 15.5h6M10 19h4"/></svg>Scheme brief</div>
     <div class="nav-item" data-demo-nav="alerts"><svg><use href="#i-bell"/></svg>Alerts</div>
   </nav>
   <div class="divider"></div>
@@ -308,8 +350,8 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
 <header class="topbar">
   <div class="crumbs">Map <span class="sep">/</span> London <span class="sep">/</span> Beckton STW <span class="sep">/</span> <b>Programme</b></div>
   <div class="top-actions">
-    <span class="btn-ghost">Baseline vs forecast</span>
-    <span class="btn-ghost cyan">Export programme</span>
+    <span class="btn-ghost">Filter: evidence status</span>
+    <span class="btn-ghost cyan">Export evidence list</span>
   </div>
 </header>
 
@@ -317,172 +359,113 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
   <div class="header-card card">
     <div class="hdr-ico"><svg><use href="#i-prog"/></svg></div>
     <div class="hdr-body">
-      <div class="hdr-kicker">Programme · Site schedule</div>
+      <div class="hdr-kicker">Programme · Evidence-backed milestones</div>
       <h1>
-        Beckton STW — programme
+        Beckton STW: evidence-backed milestones
         <span class="pill amber">RAG AMBER</span>
-        <span class="pill green">61% ON TRACK</span>
+        <span class="pill cyan">Independently captured</span>
       </h1>
-      <div class="hdr-meta">AMP8 Sludge package · <b>Costain UK Ltd</b> · Early Works / Assurance · <b>Not official TW scores</b></div>
+      <div class="hdr-meta">AMP8 Sludge package · <b>Costain UK Ltd</b> · Milestones shown only as far as site evidence supports them · <b>Demo data</b></div>
     </div>
     <div class="hdr-side">
-      <div class="dates">02/06/2026 – 28/11/2026</div>
-      <div class="cost">Scheme cost · £ TBC</div>
+      <div class="ev-window">Evidence window: Jun to Sep 2026</div>
+      <div class="ev-window-sub">22 inspection records linked</div>
     </div>
   </div>
 
   <div class="kpi-row">
     <div class="kpi">
-      <div class="k">Overall progress</div>
-      <div class="v green">61%</div>
-      <div class="s">Scheme · on track band</div>
+      <div class="k">Evidenced complete</div>
+      <div class="v green">2 of 6</div>
+      <div class="s">Closed out by Clerk of Works records</div>
     </div>
     <div class="kpi">
-      <div class="k">Planned vs actual</div>
-      <div class="v cyan">64% / 61%</div>
-      <div class="s">Demo planned · actual</div>
-    </div>
-    <div class="kpi">
-      <div class="k">Critical path items</div>
+      <div class="k">Awaiting evidence</div>
       <div class="v amber">2</div>
-      <div class="s">Isolation + MEICA first fix</div>
+      <div class="s">Work started, close-out not yet captured</div>
     </div>
     <div class="kpi">
-      <div class="k">Float / slip</div>
-      <div class="v amber">−2 days</div>
-      <div class="s">Train A isolation (amber)</div>
+      <div class="k">Blocked by open record</div>
+      <div class="v amber">1</div>
+      <div class="s">Digester D2 works held by NCR-00471</div>
     </div>
-  </div>
-
-  <div class="gantt-card card">
-    <div class="sec-label">Timeline · Jun–Nov 2026 <span class="hint">CSS demo bars · planned (top) vs actual (bottom)</span></div>
-    <div class="gantt-months">
-      <span class="lab">Phase</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span>
-    </div>
-    <div class="gantt-row">
-      <div class="name">Site welfare<span class="sub">Complete</span></div>
-      <div class="track">
-        <div class="today-line" style="left:58%"></div>
-        <div class="bar planned" style="left:0%;width:14%"></div>
-        <div class="bar actual g" style="left:0%;width:14%"></div>
-      </div>
-    </div>
-    <div class="gantt-row">
-      <div class="name">Temp works · Sludge Hall<span class="sub">Complete</span></div>
-      <div class="track">
-        <div class="today-line" style="left:58%"></div>
-        <div class="bar planned" style="left:12%;width:28%"></div>
-        <div class="bar actual g" style="left:12%;width:28%"></div>
-      </div>
-    </div>
-    <div class="gantt-row">
-      <div class="name">Train A isolation<span class="sub">In progress · −2d slip</span></div>
-      <div class="track">
-        <div class="today-line" style="left:58%"></div>
-        <div class="bar planned" style="left:48%;width:12%"></div>
-        <div class="bar actual a" style="left:48%;width:14%"></div>
-      </div>
-    </div>
-    <div class="gantt-row">
-      <div class="name">MEICA first fix<span class="sub">Early · low %</span></div>
-      <div class="track">
-        <div class="today-line" style="left:58%"></div>
-        <div class="bar planned" style="left:58%;width:24%"></div>
-        <div class="bar actual a" style="left:58%;width:6%"></div>
-      </div>
-    </div>
-    <div class="gantt-row">
-      <div class="name">Commissioning / handover<span class="sub">Future</span></div>
-      <div class="track">
-        <div class="today-line" style="left:58%"></div>
-        <div class="bar future" style="left:78%;width:22%">Nov</div>
-      </div>
-    </div>
-    <div class="legend">
-      <span><i class="p"></i>Planned</span>
-      <span><i class="g"></i>Actual (green)</span>
-      <span><i class="a"></i>Actual (amber slip)</span>
-      <span><i class="t"></i>Today (~25 Sep)</span>
+    <div class="kpi">
+      <div class="k">Last evidence captured</div>
+      <div class="v cyan">24 Sep</div>
+      <div class="s">S. Patel, Clerk of Works</div>
     </div>
   </div>
 
   <div class="table-card card">
-    <div class="sec-label">Milestones · aligned to weekly report / GT story</div>
-    <div class="ms-head">
-      <div>Milestone</div><div>Owner</div><div>Baseline start</div><div>Baseline finish</div><div>Forecast</div><div>%</div><div>RAG</div><div>Notes</div>
+    <div class="sec-label">Evidence-backed milestones <span class="hint">Status comes from Clerk of Works records, not from a plan</span></div>
+    <div class="ev-head">
+      <div>Milestone</div><div>Status</div><div>Last evidence</div><div>Captured by</div><div>Evidence</div>
     </div>
-    <div class="ms-row">
-      <div class="title">Site welfare &amp; compound</div>
-      <div class="muted">Costain</div>
-      <div class="muted">02/06</div>
-      <div class="muted">13/06</div>
-      <div class="muted">13/06</div>
-      <div><span class="pct done">100%</span></div>
-      <div><span class="rag g"><i></i>G</span></div>
-      <div class="notes">Complete · handed to Ops access</div>
+    <div class="ev-row">
+      <div class="title">Site welfare &amp; compound<span class="sub">Handed to Ops access</span></div>
+      <div><span class="ev-st g"><i></i>Evidenced complete</span></div>
+      <div class="muted">13 Jun 2026</div>
+      <div class="who">S. Patel<span>Clerk of Works</span></div>
+      <div class="ev-link"><span class="cnt">4 records</span><a href="10-site-visuals-beckton.html">CAM-BKT-06</a></div>
     </div>
-    <div class="ms-row">
-      <div class="title">Temporary works · Sludge Hall</div>
-      <div class="muted">Costain</div>
-      <div class="muted">16/06</div>
-      <div class="muted">01/08</div>
-      <div class="muted">01/08</div>
-      <div><span class="pct done">100%</span></div>
-      <div><span class="rag g"><i></i>G</span></div>
-      <div class="notes">Crane pad / enabling complete</div>
+    <div class="ev-row">
+      <div class="title">Temporary works · Sludge Hall<span class="sub">Crane pad and enabling</span></div>
+      <div><span class="ev-st g"><i></i>Evidenced complete</span></div>
+      <div class="muted">01 Aug 2026</div>
+      <div class="who">R. Mensah<span>Clerk of Works</span></div>
+      <div class="ev-link"><span class="cnt">6 records</span><a href="22-assurance-beckton.html">HOLD-0079</a><a href="16-cam-detail-beckton.html">CAM-BKT-02</a></div>
     </div>
-    <div class="ms-row">
-      <div class="title">Process Train A isolation window</div>
-      <div class="muted">TW / Costain</div>
-      <div class="muted">08/09</div>
-      <div class="muted">19/09</div>
-      <div class="muted">21/09</div>
-      <div><span class="pct a">70%</span></div>
-      <div><span class="rag a"><i></i>A</span></div>
-      <div class="notes">−2 days · recovery with TW Ops</div>
+    <div class="ev-row">
+      <div class="title">Process Train A isolation<span class="sub">Interface with TW Ops</span></div>
+      <div><span class="ev-st a"><i></i>In progress, close-out open</span></div>
+      <div class="muted">24 Sep 2026</div>
+      <div class="who">S. Patel<span>Clerk of Works</span></div>
+      <div class="ev-link"><span class="cnt">3 records</span><a href="10-site-visuals-beckton.html">CAM-BKT-05</a><a href="22-assurance-beckton.html">HOLD-0087</a></div>
     </div>
-    <div class="ms-row">
-      <div class="title">MEICA first fix — Train A</div>
-      <div class="muted">Costain</div>
-      <div class="muted">22/09</div>
-      <div class="muted">31/10</div>
-      <div class="muted">31/10</div>
-      <div><span class="pct a">15%</span></div>
-      <div><span class="rag a"><i></i>A</span></div>
-      <div class="notes">Early start · depends on isolation</div>
+    <div class="ev-row">
+      <div class="title">MEICA first fix · Train A<span class="sub">Cable management</span></div>
+      <div><span class="ev-st a"><i></i>Started, awaiting evidence</span></div>
+      <div class="muted">22 Sep 2026</div>
+      <div class="who">R. Mensah<span>Clerk of Works</span></div>
+      <div class="ev-link"><span class="cnt">2 records</span><a href="22-assurance-beckton.html">NCR-00441</a></div>
     </div>
-    <div class="ms-row">
-      <div class="title">Commissioning / handover</div>
-      <div class="muted">TW / Costain</div>
-      <div class="muted">03/11</div>
-      <div class="muted">28/11</div>
-      <div class="muted">28/11</div>
-      <div><span class="pct g">0%</span></div>
-      <div><span class="rag g"><i></i>G</span></div>
-      <div class="notes">Future · readiness review + snag</div>
+    <div class="ev-row">
+      <div class="title">Digester D2 gas train works<span class="sub">PKG-SLDG-03</span></div>
+      <div><span class="ev-st r"><i></i>Held by open NCR</span></div>
+      <div class="muted">18 Sep 2026</div>
+      <div class="who">S. Patel<span>Clerk of Works</span></div>
+      <div class="ev-link"><span class="cnt">5 records</span><a href="07-decision-ncr-00471.html">NCR-00471</a></div>
     </div>
+    <div class="ev-row">
+      <div class="title">Commissioning / handover<span class="sub">Readiness review and snag</span></div>
+      <div><span class="ev-st n"><i></i>Not started</span></div>
+      <div class="muted">None</div>
+      <div class="muted">None yet</div>
+      <div class="ev-link"><span class="none">No evidence captured yet</span></div>
+    </div>
+    <div class="scope-note"><b>Scope:</b> drill-down stops at site evidence. No cost, no schedule forecast, no float or critical path on this view.</div>
   </div>
 
   <div class="watch-card card">
-    <h3>Watch items</h3>
+    <h3>Evidence gaps</h3>
     <ul class="watch-list">
       <li>
-        <span class="tag">Amber · critical path</span><br/>
-        Train A isolation slipped 2 days — recovery plan agreed; float consumed on MEICA first fix.
+        <span class="tag">Close-out evidence missing</span><br/>
+        Train A isolation has no close-out photo yet. Release of HOLD-0087 depends on it.
       </li>
       <li>
-        <span class="tag">Amber · interface</span><br/>
-        MEICA first fix early; protect isolation close-out before bulk install ramps.
+        <span class="tag">Open record blocks work</span><br/>
+        Digester D2 gas train stays held until NCR-00471 corrective evidence is captured.
       </li>
       <li>
-        <span class="tag">Watch · welfare</span><br/>
-        Non-blocking fire egress observation on welfare — track to close.
+        <span class="tag">Thin evidence</span><br/>
+        MEICA first fix has 2 records so far. Next Clerk of Works visit should photograph cable routes.
       </li>
     </ul>
     <div class="link-note">
-      Linked assurance · <b>NCR-00471</b> (Process Safety · overdue) — open from Assurance / decision queue. Demo only.
+      Every row opens to its source records. Linked: <b>NCR-00471</b> (Process Safety, open). Demo only.
     </div>
-    <div class="demo-foot">Demo programme · not official TW data</div>
+    <div class="demo-foot">Demo records · fictitious names · not official TW data</div>
   </div>
 </div>
 <script src="../nav.js"></script>

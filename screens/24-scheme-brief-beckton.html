@@ -189,6 +189,53 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
 .act-row .what b { color:#7DD3FC; }
 .act-row .who { font-size:10.5px; color:var(--muted); }
 .demo-foot { font-size:9.5px; color:#6A8299; margin-top:4px; text-align:right; }
+
+/* v3: scheme brief (use three: handover) 9 Oct 2026 */
+.main.brief {
+  grid-template-columns: 1fr 1fr 1fr !important;
+  grid-template-rows: auto minmax(0,0.9fr) minmax(0,1.1fr) !important;
+}
+.brief .hero-card { grid-column:1 / -1; border-color:rgba(0,163,224,0.35); }
+.brief .gen-line { font-size:12px; color:#7DD3FC; font-weight:650; margin-top:4px; }
+.brief .gen-line i { font-style:normal; color:var(--muted); font-weight:500; }
+.brief .hero-ico {
+  width:48px; height:48px; border-radius:12px; flex-shrink:0; display:grid; place-items:center;
+  background:rgba(0,163,224,0.14); color:#7DD3FC; border:1px solid rgba(0,163,224,0.35);
+}
+.brief .hero-ico svg { width:24px; height:24px; stroke:currentColor; fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+.brief .bp { padding:10px 12px; display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+.brief .bp.state { grid-column:1; grid-row:2; }
+.brief .bp.open { grid-column:2; grid-row:2; }
+.brief .bp.soon { grid-column:3; grid-row:2; }
+.brief .bp.hist { grid-column:1; grid-row:3; }
+.brief .bp.who { grid-column:2 / -1; grid-row:3; }
+.brief ul.st { list-style:none; display:flex; flex-direction:column; gap:5px; }
+.brief ul.st li {
+  font-size:11.5px; line-height:1.4; color:#D7E3EE;
+  padding:5px 9px; border-radius:8px; background:rgba(8,14,24,0.5); border:1px solid rgba(100,140,180,0.1);
+}
+.brief ul.st li .d { display:block; font-size:9.5px; font-weight:700; color:var(--muted); letter-spacing:0.03em; margin-bottom:1px; }
+.brief a.cite {
+  display:inline-block; font-size:9px; font-weight:750; letter-spacing:0.03em; text-decoration:none;
+  padding:1px 5px; border-radius:4px; margin-left:3px; vertical-align:1px;
+  color:#7DD3FC; background:rgba(0,163,224,0.12); border:1px solid rgba(0,163,224,0.32);
+}
+.brief table { width:100%; border-collapse:collapse; font-size:11px; }
+.brief th {
+  text-align:left; font-size:9px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
+  color:var(--muted); padding:5px 6px; border-bottom:1px solid rgba(100,140,180,0.16); background:rgba(8,14,24,0.35);
+}
+.brief td { padding:4px 6px; border-bottom:1px solid rgba(100,140,180,0.07); color:#D7E3EE; vertical-align:top; }
+.brief td.when { color:var(--muted); white-space:nowrap; font-weight:650; }
+.brief td.wh b { color:#E8F1F8; font-weight:650; display:block; }
+.brief td.wh span { color:var(--muted); font-size:10px; }
+.brief .tier {
+  display:inline-block; font-size:9px; font-weight:750; padding:1px 6px; border-radius:8px; white-space:nowrap;
+  background:rgba(100,140,180,0.12); color:#A8BCCE; border:1px solid rgba(100,140,180,0.28);
+}
+.brief .tier.insp { background:rgba(34,197,94,0.12); color:#86EFAC; border-color:rgba(34,197,94,0.35); }
+.brief .tier.ext { background:rgba(245,158,11,0.12); color:#FBBF24; border-color:rgba(245,158,11,0.35); }
+.brief .bfoot { font-size:9.5px; color:#6A8299; margin-top:auto; padding-top:6px; }
 </style>
 <link rel="stylesheet" href="../nav.css"/>
 </head><body data-demo-site="beckton">
@@ -222,9 +269,9 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
     <div class="nav-item" data-demo-nav="team"><svg><use href="#i-people"/></svg>Project team</div>
     <div class="nav-item" data-demo-nav="visuals"><svg><use href="#i-cam"/></svg>Site visuals</div>
     <div class="nav-item" data-demo-nav="programme"><svg><use href="#i-prog"/></svg>Programme</div>
-    <div class="nav-item active" data-demo-nav="assurance"><svg><use href="#i-shield"/></svg>Assurance</div>
+    <div class="nav-item" data-demo-nav="assurance"><svg><use href="#i-shield"/></svg>Assurance</div>
     <div class="nav-item" data-demo-nav="reports"><svg><use href="#i-doc"/></svg>Reports</div>
-    <div class="nav-item" data-demo-nav="brief"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 12h6M10 15.5h6M10 19h4"/></svg>Scheme brief</div>
+    <div class="nav-item active" data-demo-nav="brief"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 12h6M10 15.5h6M10 19h4"/></svg>Scheme brief</div>
     <div class="nav-item" data-demo-nav="alerts"><svg><use href="#i-bell"/></svg>Alerts</div>
   </nav>
   <div class="divider"></div>
@@ -244,143 +291,84 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
 </aside>
 
 <header class="topbar">
-  <div class="crumbs">Map <span class="sep">/</span> London <span class="sep">/</span> Beckton STW <span class="sep">/</span> <b>Assurance</b></div>
+  <div class="crumbs">Map <span class="sep">/</span> London <span class="sep">/</span> Beckton STW <span class="sep">/</span> <b>Scheme brief</b></div>
   <div class="top-actions">
-    <span class="btn-ghost">Export register</span>
-    <span class="btn-ghost cyan">New observation</span>
+    <a class="btn-ghost" href="04-site-dashboard-gt.html" style="text-decoration:none">Back to site</a>
+    <span class="btn-ghost cyan">Export brief (PDF)</span>
   </div>
 </header>
 
-<div class="main">
+<div class="main brief">
   <div class="hero-card card">
-    <div class="score-ring"><span>72</span></div>
+    <div class="hero-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 12h6M10 15.5h6M10 19h4"/></svg></div>
     <div class="hero-body">
-      <div class="hero-kicker">Assurance hub · Site register</div>
-      <h1>
-        Beckton STW — assurance
-        <span class="pill amber">Record completeness 72/100</span>
-        <span class="pill amber">RAG AMBER</span>
-      </h1>
-      <div class="hero-meta">Focused register · Landing for NCR drill-down · <b>Costain UK Ltd</b> · <b>Record status, not a safety determination</b> · Demo only</div>
+      <div class="hero-kicker">Scheme brief · Handover</div>
+      <h1>Beckton STW: scheme brief <span class="pill amber">RAG AMBER</span></h1>
+      <div class="gen-line">Generated from primary records. Every statement cites its source.</div>
+      <div class="hero-meta">Generated 25 Sep 2026 08:00 · 11 records cited · For a newcomer taking over the scheme, readable in 20 minutes · TW-BKT-AMP8-001 · <b>Record status, not a safety determination</b></div>
     </div>
     <div class="kpi-chips">
-      <div class="kpi-chip"><div class="k">Open NCRs</div><div class="v a">4</div></div>
+      <div class="kpi-chip"><div class="k">Open items</div><div class="v a">4</div></div>
       <div class="kpi-chip"><div class="k">Overdue</div><div class="v r">2</div></div>
-      <div class="kpi-chip"><div class="k">Holds</div><div class="v a">1</div></div>
-      <div class="kpi-chip"><div class="k">Last visit</div><div class="v c">18 Sep</div></div>
+      <div class="kpi-chip"><div class="k">Last capture</div><div class="v c">24 Sep</div></div>
     </div>
   </div>
 
-  <div class="panel decisions card">
-    <div class="sec-label"><span>Open decisions</span><span class="link">VIEW QUEUE →</span></div>
-    <div class="row crit">
-      <span class="badge over">Overdue</span>
-      <div><div class="title">NCR-00471 · Process Safety</div><div class="sub">Decision required · <b>PKG-SLDG-03</b></div></div>
-      <div class="meta"><b class="r">3d overdue</b>Owner · J. Okafor</div>
-      <span class="affordance">Open →</span>
-    </div>
-    <div class="row">
-      <span class="badge over">Overdue</span>
-      <div><div class="title">HSO-00129 · Access &amp; Egress</div><div class="sub">Welfare / fire egress · track to close</div></div>
-      <div class="meta"><b class="r">1d overdue</b>Owner · A. Khan</div>
-      <span class="affordance">Open →</span>
-    </div>
-    <div class="row">
-      <span class="badge hold">Hold</span>
-      <div><div class="title">HOLD-0087 · MEICA Interface</div><div class="sub">Awaiting TW Ops agreement</div></div>
-      <div class="meta"><b>Since May</b>Pkg interface</div>
-      <span class="affordance">Open →</span>
-    </div>
+  <div class="bp state card">
+    <div class="sec-label"><span>Current state</span></div>
+    <ul class="st">
+        <li><span class="d">Safety record</span>One process safety non-conformance is open and 3 days overdue on the Digester D2 gas train. <a class="cite" href="07-decision-ncr-00471.html">NCR-00471</a></li>
+        <li><span class="d">Hold</span>The MEICA interface hold on Train A isolation has been active since 09 May 2026. <a class="cite" href="22-assurance-beckton.html">HOLD-0087</a></li>
+        <li><span class="d">Site photos</span>Sludge Hall and Process Train A photos are flagged for attention. <a class="cite" href="16-cam-detail-beckton.html">CAM-BKT-02</a> <a class="cite" href="10-site-visuals-beckton.html">CAM-BKT-05</a></li>
+        <li><span class="d">Evidenced complete</span>Site welfare and Sludge Hall temporary works are closed out on record. <a class="cite" href="10-site-visuals-beckton.html">CAM-BKT-06</a> <a class="cite" href="22-assurance-beckton.html">HOLD-0079</a></li>
+    </ul>
   </div>
 
-  <div class="panel ncrs card">
-    <div class="sec-label"><span>NCRs</span><span class="link">REGISTER →</span></div>
-    <div class="row clickable">
-      <span class="badge over">NCR</span>
-      <div><div class="title">NCR-00471 · Process Safety</div><div class="sub">AMP8 sludge · <b>clickable → drill-down</b></div></div>
-      <div class="meta"><b class="r">OVERDUE</b>Raised 18 Sep</div>
-      <span class="affordance">Open →</span>
-    </div>
-    <div class="row">
-      <span class="badge open">NCR</span>
-      <div><div class="title">NCR-00458 · Temporary works sign-off</div><div class="sub">Sludge Hall · evidence pending</div></div>
-      <div class="meta"><b>Open</b>Due 02 Oct</div>
-      <span class="affordance">Open →</span>
-    </div>
-    <div class="row">
-      <span class="badge open">NCR</span>
-      <div><div class="title">NCR-00441 · Cable management</div><div class="sub">MEICA first fix · low severity</div></div>
-      <div class="meta"><b>Open</b>Due 10 Oct</div>
-      <span class="affordance">Open →</span>
-    </div>
-    <div class="row">
-      <span class="badge watch">NCR</span>
-      <div><div class="title">NCR-00412 · Housekeeping</div><div class="sub">Closed pending verification</div></div>
-      <div class="meta"><b>Watch</b>Closed 12 Sep</div>
-      <span class="affordance">View →</span>
-    </div>
+  <div class="bp open card">
+    <div class="sec-label"><span>Open items</span><a class="link" href="22-assurance-beckton.html" style="text-decoration:none">REGISTER →</a></div>
+    <ul class="st">
+        <li><span class="d">NCR · overdue 3 days</span>D2 gas train trial started without co-signed LOTO verification. Decision with Lead Assurance. <a class="cite" href="07-decision-ncr-00471.html">NCR-00471</a></li>
+        <li><span class="d">HSO · overdue 1 day</span>Welfare fire egress route partly obstructed. <a class="cite" href="22-assurance-beckton.html">HSO-00129</a></li>
+        <li><span class="d">Hold · active</span>Train A isolation interface awaiting TW Ops agreement. <a class="cite" href="22-assurance-beckton.html">HOLD-0087</a></li>
+        <li><span class="d">NCR · open</span>Sludge Hall temporary works sign-off, evidence pending. <a class="cite" href="22-assurance-beckton.html">NCR-00458</a></li>
+    </ul>
   </div>
 
-  <div class="panel holds card">
-    <div class="sec-label"><span>Holds</span><span class="link">ALL HOLDS →</span></div>
-    <div class="row">
-      <span class="badge hold">HOLD</span>
-      <div><div class="title">HOLD-0087 · MEICA Interface</div><div class="sub">Train A isolation interface · Costain / TW Ops</div></div>
-      <div class="meta"><b>Active</b>Since 09 May</div>
-      <span class="affordance">Open →</span>
-    </div>
-    <div class="row">
-      <span class="badge watch">HOLD</span>
-      <div><div class="title">HOLD-0079 · Crane pad (resolved)</div><div class="sub">Temp works · released after inspection</div></div>
-      <div class="meta"><b>Released</b>01 Aug</div>
-      <span class="affordance">View →</span>
-    </div>
+  <div class="bp soon card">
+    <div class="sec-label"><span>Closing soon</span></div>
+    <ul class="st">
+        <li><span class="d">Due 02 Oct</span>Temporary works sign-off needs a close-out photo from the Clerk of Works. <a class="cite" href="22-assurance-beckton.html">NCR-00458</a></li>
+        <li><span class="d">Due 10 Oct</span>MEICA first fix cable management, low severity. <a class="cite" href="22-assurance-beckton.html">NCR-00441</a></li>
+        <li><span class="d">Release gate</span>HOLD-0087 can only be released once NCR-00471 corrective evidence is captured. <a class="cite" href="22-assurance-beckton.html">HOLD-0087</a> <a class="cite" href="07-decision-ncr-00471.html">NCR-00471</a></li>
+        <li><span class="d">Verification</span>Housekeeping NCR closed 12 Sep, awaiting verification photo. <a class="cite" href="22-assurance-beckton.html">NCR-00412</a></li>
+    </ul>
   </div>
 
-  <div class="panel hso card">
-    <div class="sec-label"><span>H&amp;S observations</span><span class="link">ALL HSO →</span></div>
-    <div class="row">
-      <span class="badge over">HSO</span>
-      <div><div class="title">HSO-00129 · Access &amp; Egress</div><div class="sub">Welfare fire egress · 1 day overdue</div></div>
-      <div class="meta"><b class="r">Overdue</b>Raised 22 Sep</div>
-      <span class="affordance">Open →</span>
-    </div>
-    <div class="row">
-      <span class="badge open">HSO</span>
-      <div><div class="title">HSO-00118 · PPE spot check</div><div class="sub">Compound · closed with action</div></div>
-      <div class="meta"><b>Closed</b>15 Sep</div>
-      <span class="affordance">View →</span>
-    </div>
+  <div class="bp hist card">
+    <div class="sec-label"><span>Recent history</span></div>
+    <ul class="st">
+        <li><span class="d">22 Sep 2026</span>Fire egress observation raised at welfare. <a class="cite" href="22-assurance-beckton.html">HSO-00129</a> <a class="cite" href="10-site-visuals-beckton.html">CAM-BKT-06</a></li>
+        <li><span class="d">18 Sep 2026</span>Assurance visit ASS-VISIT-0921: D2 flange break found without LOTO sign-off. <a class="cite" href="07-decision-ncr-00471.html">NCR-00471</a> <a class="cite" href="16-cam-detail-beckton.html">CAM-BKT-02</a></li>
+        <li><span class="d">15 Sep 2026</span>PPE spot check at compound closed with action. <a class="cite" href="22-assurance-beckton.html">HSO-00118</a></li>
+        <li><span class="d">01 Aug 2026</span>Crane pad hold released after inspection. <a class="cite" href="22-assurance-beckton.html">HOLD-0079</a></li>
+    </ul>
   </div>
 
-  <div class="panel activity card">
-    <div class="sec-label"><span>Recent assurance activity</span><span class="link">FULL LOG →</span></div>
-    <div class="act-row">
-      <div class="when">25 Sep 08:40</div>
-      <div class="what">Alert raised · <b>NCR-00471</b> still overdue — pushed to Alerts inbox</div>
-      <div class="who">System · Jane Doe</div>
-    </div>
-    <div class="act-row">
-      <div class="when">24 Sep 16:40</div>
-      <div class="what">Programme link · Train A isolation −2d noted against <b>HOLD-0087</b></div>
-      <div class="who">Priya Shah · TW PM</div>
-    </div>
-    <div class="act-row">
-      <div class="when">22 Sep 11:20</div>
-      <div class="what">HSO-00129 opened · Access &amp; Egress (welfare fire egress watch)</div>
-      <div class="who">R. Mensah · Clerk of Works</div>
-    </div>
-    <div class="act-row">
-      <div class="when">18 Sep 10:30</div>
-      <div class="what">Assurance visit completed · record completeness held at <b>72/100</b></div>
-      <div class="who">Jane Doe · Lead Assurance</div>
-    </div>
-    <div class="act-row">
-      <div class="when">18 Sep 09:58</div>
-      <div class="what"><b>NCR-00471</b> raised · Process Safety · PKG-SLDG-03</div>
-      <div class="who">S. Patel · Clerk of Works</div>
-    </div>
-    <div class="demo-foot">Demo assurance register · not official TW scores · NCR-00471 opens drill-down (07)</div>
+  <div class="bp who card">
+    <div class="sec-label"><span>Who did what and when</span><span class="link">Every view and change is logged</span></div>
+    <table>
+      <thead><tr><th>When</th><th>Who</th><th>Tier</th><th>Action and source</th></tr></thead>
+      <tbody>
+          <tr><td class="when">25 Sep 07:30</td><td class="wh"><b>Jane Doe</b><span>Lead Assurance</span></td><td><span class="tier">Portfolio</span></td><td>Opened NCR-00471 for decision <a class="cite" href="07-decision-ncr-00471.html">NCR-00471</a></td></tr>
+          <tr><td class="when">24 Sep 16:40</td><td class="wh"><b>Priya Shah</b><span>TW Project Manager</span></td><td><span class="tier">Project</span></td><td>Commented: Train A isolation interface noted against hold <a class="cite" href="22-assurance-beckton.html">HOLD-0087</a></td></tr>
+          <tr><td class="when">24 Sep 10:16</td><td class="wh"><b>S. Patel</b><span>Clerk of Works</span></td><td><span class="tier insp">Inspection</span></td><td>Captured Process Train A photo <a class="cite" href="10-site-visuals-beckton.html">CAM-BKT-05</a></td></tr>
+          <tr><td class="when">22 Sep 11:20</td><td class="wh"><b>R. Mensah</b><span>Clerk of Works</span></td><td><span class="tier insp">Inspection</span></td><td>Raised fire egress observation <a class="cite" href="22-assurance-beckton.html">HSO-00129</a></td></tr>
+          <tr><td class="when">18 Sep 14:20</td><td class="wh"><b>M. Okonkwo</b><span>Costain, upload link</span></td><td><span class="tier ext">Contractor</span></td><td>Acknowledged NCR, no corrective evidence uploaded <a class="cite" href="07-decision-ncr-00471.html">NCR-00471</a></td></tr>
+          <tr><td class="when">18 Sep 09:58</td><td class="wh"><b>S. Patel</b><span>Clerk of Works</span></td><td><span class="tier insp">Inspection</span></td><td>Raised NCR on site, write-once record <a class="cite" href="07-decision-ncr-00471.html">NCR-00471</a></td></tr>
+          <tr><td class="when">18 Sep 09:42</td><td class="wh"><b>S. Patel</b><span>Clerk of Works</span></td><td><span class="tier insp">Inspection</span></td><td>Captured Sludge Hall and D2 flange photos <a class="cite" href="16-cam-detail-beckton.html">CAM-BKT-02</a></td></tr>
+      </tbody>
+    </table>
+    <div class="bfoot">Demo brief · fictitious names and records · only the Inspection tier creates records; higher tiers review, comment and approve</div>
   </div>
 </div>
 <script src="../nav.js"></script>

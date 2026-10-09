@@ -135,9 +135,8 @@ html, body { width: 1440px; height: 900px; overflow: hidden; font-family: var(--
     44px /* timeline */
     72px /* progress */
     52px /* resource */
-    52px /* budget */
     28px /* risk hdr */
-    36px 36px 36px 36px; /* L M H E */
+    49px 49px 49px 49px; /* L M H E (v3: budget row removed, 9 Oct 2026) */
 }
 
 .lab {
@@ -246,6 +245,15 @@ html, body { width: 1440px; height: 900px; overflow: hidden; font-family: var(--
   opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 50;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* v3: 4-tier access indicator (demo only, 9 Oct 2026) */
+.user-meta .tier-tag { display:inline-block; margin-top:3px; font-size:9.5px; font-weight:700; letter-spacing:0.03em; color:#0077A8; background:rgba(0,156,222,0.1); border:1px solid rgba(0,156,222,0.3); padding:1px 6px; border-radius:8px; }
+.view-as { display:flex; align-items:center; gap:8px; margin-left:auto; margin-right:18px; }
+.view-as .va-lab { font-size:10.5px; font-weight:650; color:#7AA0B8; letter-spacing:0.03em; }
+.view-as .va-pills { display:flex; gap:2px; padding:2px; border-radius:999px; background:rgba(10,37,64,0.6); border:1px solid rgba(0,163,224,0.22); }
+.view-as .va-pills span { font-size:10.5px; font-weight:650; color:#8AA0B5; padding:4px 10px; border-radius:999px; cursor:default; }
+.view-as .va-pills span.on { background:#009CDE; color:#fff; }
+.view-as .va-note { font-size:9.5px; color:#6A8299; }
 </style>
 <link rel="stylesheet" href="../nav.css"/>
 </head><body data-demo-site="shared">
@@ -299,6 +307,7 @@ html, body { width: 1440px; height: 900px; overflow: hidden; font-family: var(--
       <div class="user-meta">
         <div class="name">Jane Doe</div>
         <div class="role">Lead Assurance</div>
+        <div class="tier-tag">Portfolio tier</div>
       </div>
     </div>
     <button class="logout-btn" type="button" data-demo-nav="logout">
@@ -326,6 +335,11 @@ html, body { width: 1440px; height: 900px; overflow: hidden; font-family: var(--
     <div>
       <h1>Sites portfolio overview</h1>
       <div class="note">Demo placeholder data — not official Thames Water scores</div>
+    </div>
+    <div class="view-as" title="Demo only: tier view is not wired">
+      <span class="va-lab">Viewing as</span>
+      <div class="va-pills"><span class="on">Portfolio</span><span>Programme</span><span>Project</span><span>Inspection</span></div>
+      <span class="va-note">Demo, not wired</span>
     </div>
     <div class="period">Reporting window · <b>Jul 2026 – Sep 2026</b></div>
   </div>
@@ -387,14 +401,6 @@ html, body { width: 1440px; height: 900px; overflow: hidden; font-family: var(--
     <div class="cell res" data-col="mogden"><div class="pair"><div><div class="k">Planned</div><div class="v">8,200 h</div></div><div><div class="k">Actual</div><div class="v">7,960 h</div></div></div></div>
     <div class="cell res" data-col="hogsmill"><div class="pair"><div><div class="k">Planned</div><div class="v">4,100 h</div></div><div><div class="k">Actual</div><div class="v">3,880 h</div></div></div></div>
     <div class="cell res" data-col="deephams"><div class="pair"><div><div class="k">Planned</div><div class="v">6,750 h</div></div><div><div class="k">Actual</div><div class="v">7,020 h</div></div></div></div>
-
-    <div class="lab">Budget</div>
-    <div class="cell bud" data-col="beckton"><div class="pair"><div><div class="k">Planned</div><div class="v">£185.0m</div></div><div><div class="k">Actual</div><div class="v">£178.4m</div></div></div></div>
-    <div class="cell bud" data-col="oxford"><div class="pair"><div><div class="k">Planned</div><div class="v">£272.0m</div></div><div><div class="k">Actual</div><div class="v">£291.5m</div></div></div></div>
-    <div class="cell bud" data-col="crossness"><div class="pair"><div><div class="k">Planned</div><div class="v">£142.0m</div></div><div><div class="k">Actual</div><div class="v">£139.2m</div></div></div></div>
-    <div class="cell bud" data-col="mogden"><div class="pair"><div><div class="k">Planned</div><div class="v">£98.5m</div></div><div><div class="k">Actual</div><div class="v">£94.1m</div></div></div></div>
-    <div class="cell bud" data-col="hogsmill"><div class="pair"><div><div class="k">Planned</div><div class="v">£54.0m</div></div><div><div class="k">Actual</div><div class="v">£51.8m</div></div></div></div>
-    <div class="cell bud" data-col="deephams"><div class="pair"><div><div class="k">Planned</div><div class="v">£76.0m</div></div><div><div class="k">Actual</div><div class="v">£79.4m</div></div></div></div>
 
     <div class="lab">Risk Radar</div>
     <div class="cell muted-bg" data-col="beckton" style="font-size:10.5px;font-weight:650;color:#3A556E">Sep 2026</div>

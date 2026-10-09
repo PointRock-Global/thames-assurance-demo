@@ -261,6 +261,47 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
 }
 .link-note b { color:#E8F1F8; font-weight:700; }
 .demo-foot { font-size:9.5px; color:#6A8299; margin-top:4px; }
+
+/* v3: evidence-backed milestones (9 Oct 2026) */
+.main { grid-template-rows: auto auto 1fr !important; }
+.table-card { grid-row: 3 !important; }
+.watch-card { grid-row: 3 !important; }
+.ev-head, .ev-row {
+  display:grid; grid-template-columns: 1.5fr 1.15fr 0.8fr 1fr 1.25fr;
+  gap:8px; align-items:center;
+}
+.ev-head {
+  padding:6px 12px; font-size:9px; font-weight:700; letter-spacing:0.05em;
+  color:var(--muted); text-transform:uppercase; border-bottom:1px solid rgba(100,140,180,0.14);
+  background:rgba(8,14,24,0.35);
+}
+.ev-row { padding:11px 12px; border-bottom:1px solid rgba(100,140,180,0.07); font-size:11.5px; }
+.ev-row .title { font-weight:700; color:#E8F1F8; }
+.ev-row .title .sub { display:block; font-size:10px; font-weight:500; color:var(--muted); margin-top:2px; }
+.ev-row .muted { color:var(--muted); font-size:11px; }
+.ev-row .who { color:#D0DCE8; font-size:11px; font-weight:600; }
+.ev-row .who span { display:block; color:var(--muted); font-weight:500; font-size:9.5px; margin-top:1px; }
+.ev-st {
+  display:inline-flex; align-items:center; gap:5px; padding:3px 8px; border-radius:10px;
+  font-size:9.5px; font-weight:750; letter-spacing:0.02em;
+}
+.ev-st i { width:6px; height:6px; border-radius:50%; display:inline-block; }
+.ev-st.g { background:rgba(34,197,94,0.14); color:#86EFAC; border:1px solid rgba(34,197,94,0.35); } .ev-st.g i { background:#22C55E; }
+.ev-st.a { background:rgba(245,158,11,0.14); color:#FBBF24; border:1px solid rgba(245,158,11,0.35); } .ev-st.a i { background:#F59E0B; }
+.ev-st.r { background:rgba(239,68,68,0.14); color:#FCA5A5; border:1px solid rgba(239,68,68,0.4); } .ev-st.r i { background:#EF4444; }
+.ev-st.n { background:rgba(100,140,180,0.12); color:#A8BCCE; border:1px solid rgba(100,140,180,0.28); } .ev-st.n i { background:#6A8299; }
+.ev-link { display:flex; flex-wrap:wrap; gap:4px; align-items:center; }
+.ev-link .cnt { font-size:11px; font-weight:750; color:#E8F1F8; margin-right:2px; }
+.ev-link a, .ev-link .rec {
+  font-size:9.5px; font-weight:700; letter-spacing:0.02em; text-decoration:none;
+  padding:2px 6px; border-radius:5px; color:#7DD3FC;
+  background:rgba(0,163,224,0.1); border:1px solid rgba(0,163,224,0.28);
+}
+.ev-link .none { font-size:10.5px; color:#6A8299; }
+.scope-note { padding:8px 12px; font-size:10.5px; color:#6A8299; border-top:1px solid rgba(100,140,180,0.1); margin-top:auto; }
+.scope-note b { color:#A8BCCE; font-weight:650; }
+.hdr-side .ev-window { font-size:12px; font-weight:700; color:#E8F1F8; }
+.hdr-side .ev-window-sub { font-size:11px; color:var(--muted); margin-top:3px; }
 </style>
 <link rel="stylesheet" href="../nav.css"/>
 </head><body data-demo-site="oxford">
@@ -317,8 +358,8 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
 <header class="topbar">
   <div class="crumbs">Map <span class="sep">/</span> Thames Valley &amp; HC <span class="sep">/</span> Oxford STW <span class="sep">/</span> <b>Programme</b></div>
   <div class="top-actions">
-    <span class="btn-ghost">Baseline vs forecast</span>
-    <span class="btn-ghost cyan">Export programme</span>
+    <span class="btn-ghost">Filter: evidence status</span>
+    <span class="btn-ghost cyan">Export evidence list</span>
   </div>
 </header>
 
@@ -326,185 +367,113 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font
   <div class="header-card card">
     <div class="hdr-ico"><svg><use href="#i-prog"/></svg></div>
     <div class="hdr-body">
-      <div class="hdr-kicker">Programme · Site schedule · stress case</div>
+      <div class="hdr-kicker">Programme · Evidence-backed milestones</div>
       <h1>
-        Oxford STW — programme
+        Oxford STW: evidence-backed milestones
         <span class="pill red">RAG RED</span>
-        <span class="pill red">34% BEHIND</span>
+        <span class="pill cyan">Independently captured</span>
       </h1>
-      <div class="hdr-meta">Primary / secondary upgrade · <b>CMDP JV</b> · Early Works / Assurance · <b>Not official TW scores</b></div>
+      <div class="hdr-meta">Primary / secondary upgrade · <b>CMDP JV</b> · Milestones shown only as far as site evidence supports them · <b>Demo data</b></div>
     </div>
     <div class="hdr-side">
-      <div class="dates">10/03/2026 – 30/04/2027</div>
-      <div class="cost">Scheme cost · £ TBC</div>
+      <div class="ev-window">Evidence window: Mar to Sep 2026</div>
+      <div class="ev-window-sub">17 inspection records linked</div>
     </div>
   </div>
 
   <div class="kpi-row">
     <div class="kpi">
-      <div class="k">Overall progress</div>
-      <div class="v red">34%</div>
-      <div class="s">Scheme · behind programme</div>
+      <div class="k">Evidenced complete</div>
+      <div class="v green">2 of 6</div>
+      <div class="s">Closed out by Clerk of Works records</div>
     </div>
     <div class="kpi">
-      <div class="k">Planned vs actual</div>
-      <div class="v red">58% / 34%</div>
-      <div class="s">~24 pts behind baseline</div>
+      <div class="k">Open findings on milestones</div>
+      <div class="v red">2</div>
+      <div class="s">NCR-05521 · NCR-05488</div>
     </div>
     <div class="kpi">
-      <div class="k">Critical path items</div>
-      <div class="v red">3</div>
-      <div class="s">PST-2 · secondary dig · MEICA</div>
+      <div class="k">Held</div>
+      <div class="v red">1</div>
+      <div class="s">MEICA interface held by HOLD-0194</div>
     </div>
     <div class="kpi">
-      <div class="k">Float / slip</div>
-      <div class="v red">−21 days</div>
-      <div class="s">PST-2 structural (~3 wks)</div>
-    </div>
-  </div>
-
-  <div class="gantt-card card">
-    <div class="sec-label">Timeline · Mar 2026 – Apr 2027 <span class="hint">Slipped critical path shown in red · CSS demo bars</span></div>
-    <div class="gantt-months">
-      <span class="lab">Phase</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span><span>Jan</span><span>Mar+</span>
-    </div>
-    <div class="gantt-row">
-      <div class="name">Compound &amp; welfare<span class="sub">Complete</span></div>
-      <div class="track">
-        <div class="today-line" style="left:46%"></div>
-        <div class="bar planned" style="left:0%;width:8%"></div>
-        <div class="bar actual g" style="left:0%;width:8%"></div>
-      </div>
-    </div>
-    <div class="gantt-row">
-      <div class="name">Primary enabling<span class="sub">Complete</span></div>
-      <div class="track">
-        <div class="today-line" style="left:46%"></div>
-        <div class="bar planned" style="left:6%;width:16%"></div>
-        <div class="bar actual g" style="left:6%;width:16%"></div>
-      </div>
-    </div>
-    <div class="gantt-row">
-      <div class="name">PST-2 structural<span class="sub">−21d · critical</span></div>
-      <div class="track">
-        <div class="today-line" style="left:46%"></div>
-        <div class="slip-mark" style="left:38%;width:10%"></div>
-        <div class="bar planned" style="left:20%;width:22%"></div>
-        <div class="bar actual r" style="left:20%;width:28%"></div>
-      </div>
-    </div>
-    <div class="gantt-row">
-      <div class="name">Secondary excavation<span class="sub">GI hold · delayed</span></div>
-      <div class="track">
-        <div class="today-line" style="left:46%"></div>
-        <div class="slip-mark" style="left:46%;width:8%"></div>
-        <div class="bar planned" style="left:38%;width:16%"></div>
-        <div class="bar actual r" style="left:38%;width:10%"></div>
-      </div>
-    </div>
-    <div class="gantt-row">
-      <div class="name">MEICA / commissioning<span class="sub">At risk · future</span></div>
-      <div class="track">
-        <div class="today-line" style="left:46%"></div>
-        <div class="bar future" style="left:54%;width:46%">Baseline pushed</div>
-      </div>
-    </div>
-    <div class="legend">
-      <span><i class="p"></i>Planned</span>
-      <span><i class="g"></i>Actual done</span>
-      <span><i class="r"></i>Actual slipped</span>
-      <span><i class="a"></i>Amber watch</span>
-      <span><i class="t"></i>Today (~25 Sep)</span>
+      <div class="k">Last evidence captured</div>
+      <div class="v cyan">19 Sep</div>
+      <div class="s">L. Carter, Clerk of Works</div>
     </div>
   </div>
 
   <div class="table-card card">
-    <div class="sec-label">Milestones · behind programme narrative</div>
-    <div class="ms-head">
-      <div>Milestone</div><div>Owner</div><div>Baseline start</div><div>Baseline finish</div><div>Forecast</div><div>%</div><div>RAG</div><div>Notes</div>
+    <div class="sec-label">Evidence-backed milestones <span class="hint">Status comes from Clerk of Works records, not from a plan</span></div>
+    <div class="ev-head">
+      <div>Milestone</div><div>Status</div><div>Last evidence</div><div>Captured by</div><div>Evidence</div>
     </div>
-    <div class="ms-row">
-      <div class="title">Compound &amp; welfare</div>
-      <div class="muted">CMDP</div>
-      <div class="muted">10/03</div>
-      <div class="muted">28/03</div>
-      <div class="muted">28/03</div>
-      <div><span class="pct done">100%</span></div>
-      <div><span class="rag g"><i></i>G</span></div>
-      <div class="notes">Complete</div>
+    <div class="ev-row">
+      <div class="title">Compound &amp; welfare<span class="sub">Set-up complete</span></div>
+      <div><span class="ev-st g"><i></i>Evidenced complete</span></div>
+      <div class="muted">28 Mar 2026</div>
+      <div class="who">D. Hughes<span>Clerk of Works</span></div>
+      <div class="ev-link"><span class="cnt">3 records</span><a href="13-site-visuals-oxford.html">CAM-OXF-06</a></div>
     </div>
-    <div class="ms-row">
-      <div class="title">Primary settlement enabling</div>
-      <div class="muted">CMDP</div>
-      <div class="muted">31/03</div>
-      <div class="muted">30/05</div>
-      <div class="muted">30/05</div>
-      <div><span class="pct done">100%</span></div>
-      <div><span class="rag g"><i></i>G</span></div>
-      <div class="notes">Complete · handed over</div>
+    <div class="ev-row">
+      <div class="title">Primary settlement enabling<span class="sub">Handed over</span></div>
+      <div><span class="ev-st g"><i></i>Evidenced complete</span></div>
+      <div class="muted">30 May 2026</div>
+      <div class="who">D. Hughes<span>Clerk of Works</span></div>
+      <div class="ev-link"><span class="cnt">5 records</span><a href="13-site-visuals-oxford.html">CAM-OXF-04</a></div>
     </div>
-    <div class="ms-row">
-      <div class="title">PST-2 structural works</div>
-      <div class="muted">CMDP</div>
-      <div class="muted">02/06</div>
-      <div class="muted">29/08</div>
-      <div class="muted">19/09</div>
-      <div><span class="pct r">62%</span></div>
-      <div><span class="rag r"><i></i>R</span></div>
-      <div class="notes">~3 weeks behind · edge protection</div>
+    <div class="ev-row">
+      <div class="title">PST-2 structural works<span class="sub">Edge protection</span></div>
+      <div><span class="ev-st r"><i></i>Open finding</span></div>
+      <div class="muted">19 Sep 2026</div>
+      <div class="who">L. Carter<span>Clerk of Works</span></div>
+      <div class="ev-link"><span class="cnt">4 records</span><a href="23-assurance-oxford.html">NCR-05521</a><a href="17-cam-detail-oxford.html">CAM-OXF-02</a></div>
     </div>
-    <div class="ms-row">
-      <div class="title">Secondary works excavation</div>
-      <div class="muted">CMDP</div>
-      <div class="muted">18/08</div>
-      <div class="muted">10/10</div>
-      <div class="muted">31/10</div>
-      <div><span class="pct r">28%</span></div>
-      <div><span class="rag r"><i></i>R</span></div>
-      <div class="notes">GI clarification · resource recovery</div>
+    <div class="ev-row">
+      <div class="title">Secondary works excavation<span class="sub">Ground investigation</span></div>
+      <div><span class="ev-st r"><i></i>Open finding</span></div>
+      <div class="muted">12 Sep 2026</div>
+      <div class="who">L. Carter<span>Clerk of Works</span></div>
+      <div class="ev-link"><span class="cnt">2 records</span><a href="23-assurance-oxford.html">NCR-05488</a><a href="13-site-visuals-oxford.html">CAM-OXF-03</a></div>
     </div>
-    <div class="ms-row">
-      <div class="title">MEICA install — secondary</div>
-      <div class="muted">CMDP</div>
-      <div class="muted">13/10</div>
-      <div class="muted">20/02</div>
-      <div class="muted">TBC</div>
-      <div><span class="pct a">0%</span></div>
-      <div><span class="rag a"><i></i>A</span></div>
-      <div class="notes">Start at risk · depends on dig</div>
+    <div class="ev-row">
+      <div class="title">MEICA install · secondary<span class="sub">Interface with process</span></div>
+      <div><span class="ev-st r"><i></i>Held</span></div>
+      <div class="muted">10 Sep 2026</div>
+      <div class="who">D. Hughes<span>Clerk of Works</span></div>
+      <div class="ev-link"><span class="cnt">1 record</span><a href="23-assurance-oxford.html">HOLD-0194</a></div>
     </div>
-    <div class="ms-row">
-      <div class="title">Commissioning &amp; trial</div>
-      <div class="muted">TW / CMDP</div>
-      <div class="muted">01/03</div>
-      <div class="muted">30/04</div>
-      <div class="muted">TBC</div>
-      <div><span class="pct a">0%</span></div>
-      <div><span class="rag a"><i></i>A</span></div>
-      <div class="notes">Future · end date under review</div>
+    <div class="ev-row">
+      <div class="title">Commissioning &amp; trial<span class="sub">Future</span></div>
+      <div><span class="ev-st n"><i></i>Not started</span></div>
+      <div class="muted">None</div>
+      <div class="muted">None yet</div>
+      <div class="ev-link"><span class="none">No evidence captured yet</span></div>
     </div>
+    <div class="scope-note"><b>Scope:</b> drill-down stops at site evidence. No cost, no schedule forecast, no float or critical path on this view.</div>
   </div>
 
   <div class="watch-card card">
-    <h3>Watch items · elevated</h3>
+    <h3>Evidence gaps</h3>
     <ul class="watch-list">
       <li>
-        <span class="tag">Red · critical path</span><br/>
-        PST-2 structural ~3 weeks behind baseline; temporary edge protection incomplete (escalated).
+        <span class="tag">Open finding on structure</span><br/>
+        PST-2 edge protection incomplete. NCR-05521 needs corrective photos before close.
       </li>
       <li>
-        <span class="tag">Red · secondary dig</span><br/>
-        Excavation delayed pending ground investigation; labour 34 vs plan 48.
+        <span class="tag">Evidence gap</span><br/>
+        Secondary excavation has 2 records in 3 weeks. Ground investigation evidence not yet captured.
       </li>
-      <li class="amber">
-        <span class="tag">Amber · compliance</span><br/>
-        Deep excavation RAMS under TW review · Inductions pending for 12 operatives.
+      <li>
+        <span class="tag">Held interface</span><br/>
+        MEICA install held by HOLD-0194. No release evidence on record.
       </li>
     </ul>
     <div class="link-note">
-      Assurance stress · open RED observations + CMDP capacity under plan. Programme at risk through Q4 2026. Demo only.
+      Every row opens to its source records. Linked: <b>NCR-05521</b> · <b>NCR-05488</b> · <b>HOLD-0194</b>. Demo only.
     </div>
-    <div class="demo-foot">Demo programme · not official TW data</div>
+    <div class="demo-foot">Demo records · fictitious names · not official TW data</div>
   </div>
 </div>
 <script src="../nav.js"></script>

@@ -351,6 +351,17 @@ td.muted { color:var(--muted); font-size:11.5px; }
 }
 .logout-btn svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
 .logout-btn:hover { background:#F4F8FB; color:var(--navy); border-color:rgba(10,37,64,0.22); }
+
+/* v3 risk 7 label (9 Oct 2026) */
+.score-lab .score-note { display:block; font-size:8.5px; font-weight:600; letter-spacing:0.02em; color:#8AA0B5; text-transform:none; margin-top:1px; }
+
+/* v3: scheme brief link replaces scheme value (9 Oct 2026) */
+.brief-link {
+  align-self:center; text-decoration:none; text-align:right; padding:8px 12px; border-radius:10px;
+  background:rgba(0,163,224,0.08); border:1px solid rgba(0,163,224,0.3); cursor:pointer;
+}
+.brief-link .lab { font-size:10px; font-weight:700; letter-spacing:0.06em; color:#7DD3FC; }
+.brief-link .sub { font-size:10.5px; color:var(--muted); margin-top:2px; }
 </style>
 <link rel="stylesheet" href="../nav.css"/>
 </head><body data-demo-site="beckton">
@@ -390,6 +401,7 @@ td.muted { color:var(--muted); font-size:11.5px; }
     <div class="nav-item" data-demo-nav="programme"><svg><use href="#i-prog"/></svg>Programme</div>
     <div class="nav-item" data-demo-nav="assurance"><svg><use href="#i-shield"/></svg>Assurance</div>
     <div class="nav-item" data-demo-nav="reports"><svg><use href="#i-doc"/></svg>Reports</div>
+    <div class="nav-item" data-demo-nav="brief"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 12h6M10 15.5h6M10 19h4"/></svg>Scheme brief</div>
     <div class="nav-item" data-demo-nav="alerts"><svg><use href="#i-bell"/></svg>Alerts</div>
   </nav>
   <div class="divider"></div>
@@ -415,7 +427,7 @@ td.muted { color:var(--muted); font-size:11.5px; }
     RAG: AMBER
   </span>
   <div class="score-block">
-    <div class="score-lab">ASSURANCE SCORE<b>72/100</b></div>
+    <div class="score-lab">RECORD COMPLETENESS<b>72/100</b><span class="score-note">Record status, not a safety determination</span></div>
     <div class="score-ring"><span>72%</span></div>
   </div>
 </header>
@@ -440,11 +452,10 @@ td.muted { color:var(--muted); font-size:11.5px; }
       </div>
       <div class="scope"><b>SCOPE:</b> Upgrade of activated sludge process lanes, new tertiary treatment assets and associated civils to meet AMP8 permit drivers.</div>
     </div>
-    <div class="money">
-      <div class="lab">SCHEME VALUE (EST.)</div>
-      <div class="val">£ —</div>
-      <div class="sub">To be confirmed</div>
-    </div>
+    <a class="brief-link" href="24-scheme-brief-beckton.html" data-demo-nav="brief">
+      <div class="lab">SCHEME BRIEF →</div>
+      <div class="sub">Handover brief, every line cited</div>
+    </a>
   </div>
 
   <div class="decisions card">

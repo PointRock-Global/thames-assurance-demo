@@ -32,7 +32,8 @@
     alertsB: '20-alerts-beckton.html',
     alertsO: '21-alerts-oxford.html',
     assuranceB: '22-assurance-beckton.html',
-    assuranceO: '23-assurance-oxford.html'
+    assuranceO: '23-assurance-oxford.html',
+    briefB: '24-scheme-brief-beckton.html'
   };
 
   function detectSite() {
@@ -42,7 +43,7 @@
     if (/oxford|cmdp|05-oxford|09-contractor|13-site|14-reports|15-report|17-cam|19-programme|21-alerts|23-assurance/.test(file)) {
       return 'oxford';
     }
-    if (/beckton|costain|04-site|07-decision|08-contractor|10-site|11-reports|12-report|16-cam|18-programme|20-alerts|22-assurance/.test(file)) {
+    if (/beckton|costain|04-site|07-decision|08-contractor|10-site|11-reports|12-report|16-cam|18-programme|20-alerts|22-assurance|24-scheme/.test(file)) {
       return 'beckton';
     }
 
@@ -97,6 +98,7 @@
     if (/^Assurance$/i.test(t)) return 'assurance';
     if (/^Reports$/i.test(t)) return 'reports';
     if (/^Alerts/i.test(t)) return 'alerts';
+    if (/Scheme brief/i.test(t)) return 'brief';
     if (/^Settings$/i.test(t)) return 'settings';
     if (/Log\s*out/i.test(t)) return 'logout';
     return '';
@@ -126,6 +128,12 @@
 
     if (key === 'portfolio') {
       go(ROUTES.portfolio);
+      return true;
+    }
+
+    // v3: Beckton scheme brief (only Beckton has a brief in the demo)
+    if (key === 'brief') {
+      go(ROUTES.briefB);
       return true;
     }
 
@@ -230,6 +238,7 @@
       if (/Site visuals/i.test(raw)) {
         go(s === 'oxford' ? ROUTES.visualsO : ROUTES.visualsB); return;
       }
+      if (/Scheme brief/i.test(raw)) { go(ROUTES.briefB); return; }
     });
 
     try {
@@ -257,7 +266,7 @@
         } else if (/Thames Valley/i.test(t)) {
           mark(el); el.style.cursor = 'pointer';
           onClick(el, function () { go(ROUTES.tv); });
-        } else if (/Beckton/i.test(t) && !/NCR|Reports|visuals|CAM|Programme|Alerts|Assurance/i.test(t)) {
+        } else if (/Beckton/i.test(t) && !/NCR|Reports|visuals|CAM|Programme|Alerts|Assurance|brief/i.test(t)) {
           mark(el); el.style.cursor = 'pointer';
           onClick(el, function () { go(ROUTES.becktonGt); });
         } else if (/Oxford/i.test(t) && !/NCR|Reports|visuals|CAM|Programme|Alerts|Assurance/i.test(t)) {
@@ -657,7 +666,7 @@
     if (document.querySelector('.demo-badge')) return;
     var b = document.createElement('div');
     b.className = 'demo-badge';
-    b.textContent = 'Live demo';
+    b.textContent = 'Demo';
     document.documentElement.classList.add('live-demo-shell');
     document.body.appendChild(b);
   }
@@ -773,6 +782,13 @@
     onClick(span, function () { go(ROUTES.portfolio); });
   }
 
+  function wireBriefLinks() {
+    document.querySelectorAll('a[data-demo-nav="brief"], .brief-link').forEach(function (el) {
+      if (el.closest('.rail')) return;
+      onClick(el, function () { go(ROUTES.briefB); });
+    });
+  }
+
   function init() {
     addDemoBadge();
     ensureAllSitesNav();
@@ -794,6 +810,7 @@
     wireCamDetail();
     wireReports();
     wireAssurance();
+    wireBriefLinks();
   }
 
   if (document.readyState === 'loading') {
