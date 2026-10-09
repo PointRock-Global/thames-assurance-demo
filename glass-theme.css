@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Thames Assurance: GLASS THEME rollout (Option D look) for screens 00, 02-24.
+   Loaded by nav.js only when GLASS_THEME = true. Pair: glass-theme.js.
+   Revert: set GLASS_THEME = false in nav.js (or delete these two files).
+   ========================================================================== */
+html.tg-on { background:#0A111E !important; }
+html.tg-on body { background:transparent !important; }
+.tg-orbs { position:fixed; top:0; bottom:0; left:0; right:0; z-index:-1; pointer-events:none; overflow:hidden;
+  background:url(screens/bg-shared-dark.jpg) center/cover no-repeat, #0A111E; }
+.tg-orbs::after { content:""; position:absolute; inset:0;
+  background:radial-gradient(900px 420px at 85% -10%, rgba(0,156,222,0.16), transparent 60%),
+             radial-gradient(700px 400px at 0% 110%, rgba(47,179,142,0.06), transparent 60%),
+             linear-gradient(180deg, rgba(10,17,30,0.72), rgba(10,17,30,0.84)); }
+.tg-orbs i { position:absolute; border-radius:50%; filter:blur(70px); z-index:1; }
+.tg-orbs .o1 { width:560px; height:420px; left:160px; top:180px; background:rgba(0,156,222,0.55); }
+.tg-orbs .o2 { width:520px; height:300px; left:640px; top:320px; background:rgba(34,211,238,0.32); }
+.tg-orbs .o3 { width:520px; height:420px; left:1000px; top:380px; background:rgba(124,92,255,0.45); }
+.tg-orbs .o4 { width:600px; height:260px; left:420px; top:660px; background:rgba(0,120,220,0.40); }
+.tg-orbs .o5 { width:420px; height:240px; left:900px; top:20px; background:rgba(0,156,222,0.30); }
+
+.tg-stage { background-color:transparent !important; background-image:none !important; }
+
+/* Shiny white glass: sheen (padding-box) + fill (padding-box) + luminous gradient edge (border-box) */
+.tg-glass {
+  --tg-fill:linear-gradient(160deg, rgba(255,255,255,0.95), rgba(228,237,248,0.92));
+  --tg-sheen:linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.35) 22%, rgba(255,255,255,0) 45%);
+  --tg-edge:linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.55) 25%, rgba(255,255,255,0.08) 55%, rgba(160,215,255,0.55) 100%);
+  background:var(--tg-sheen) padding-box, var(--tg-fill) padding-box, var(--tg-edge) border-box !important;
+  border-color:transparent !important; border-style:solid !important;
+  border-radius:var(--tg-r, 24px) !important;
+  backdrop-filter:blur(22px) saturate(170%) !important; -webkit-backdrop-filter:blur(22px) saturate(170%) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.05),
+             0 30px 60px -20px rgba(0,10,40,0.55), 0 8px 20px rgba(0,0,0,0.25), 0 0 44px rgba(0,156,222,0.14) !important;
+  color:#0B1B2E;
+}
+/* Keep a saturated status outline (e.g. red decision queue, selected tile) as a coloured edge */
+.tg-glass.tg-keep-edge { --tg-edge:linear-gradient(135deg, #fff 0%, var(--tg-edge-c) 30%, var(--tg-edge-c) 100%); }
+/* White panels that were already light (e.g. portfolio table): frame only, keep their fill */
+.tg-frame { border-radius:var(--tg-r, 20px) !important; overflow:hidden;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.9), 0 30px 60px -20px rgba(0,10,40,0.55), 0 8px 20px rgba(0,0,0,0.25), 0 0 44px rgba(0,156,222,0.14) !important;
+  outline:1px solid rgba(255,255,255,0.6); outline-offset:-1px; }
+
+/* Nested dark tiles inside glass become soft ink tints */
+.tg-sub { background-color:rgba(10,37,64,0.045) !important; background-image:none !important; }
+
+/* Hover lift + sheen sweep on card-sized glass (only where ::after was free) */
+.tg-card { transition:transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s; }
+.tg-card:hover { transform:translateY(-4px);
+  box-shadow:inset 0 1px 0 #fff, 0 40px 70px -18px rgba(0,10,40,0.7), 0 12px 26px rgba(0,0,0,0.3), 0 0 60px rgba(0,180,240,0.30) !important; }
+.tg-sweep { overflow:hidden; }
+.tg-sweep::after { content:""; position:absolute; top:0; left:-75%; width:38%; height:100%; pointer-events:none; z-index:5;
+  background:linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 46%, rgba(205,236,255,0.8) 56%, rgba(255,255,255,0) 100%);
+  transform:skewX(-18deg); opacity:0; }
+.tg-sweep:hover::after { animation:tg-sheen .95s cubic-bezier(.3,.7,.3,1) forwards; }
+@keyframes tg-sheen { 0% { left:-75%; opacity:0; } 15% { opacity:1; } 100% { left:135%; opacity:0; } }
+@media (prefers-reduced-motion: reduce) {
+  .tg-card { transition:none; } .tg-card:hover { transform:none; } .tg-sweep:hover::after { animation:none; }
+}

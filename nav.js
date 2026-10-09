@@ -8,6 +8,17 @@
 
   var file = (location.pathname.split('/').pop() || '').toLowerCase();
 
+  // GLASS ROLLOUT (9 Oct 2026, local): Option D glass look on screens 00 + 02-24.
+  // Single toggle: set to false to revert every screen to the original dark UI.
+  var GLASS_THEME = true;
+  (function loadGlassTheme() {
+    if (!GLASS_THEME) return;
+    if (file.indexOf('01-login') === 0 || file.indexOf('00a-exec') === 0) return;
+    var base = (document.currentScript && document.currentScript.src) ? document.currentScript.src.replace(/nav\.js(\?.*)?$/, '') : '../';
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = base + 'glass-theme.css'; document.head.appendChild(l);
+    var sc = document.createElement('script'); sc.src = base + 'glass-theme.js'; document.head.appendChild(sc);
+  })();
+
   var ROUTES = {
     login: '01-login-dark.html',
     overview: '00a-exec-overview-glass-d.html', // EXEC-OVERVIEW: post-login landing + rail 'Overview' (Option D approved 9 Oct 2026; was glass-c, originally '00a-exec-overview.html')
