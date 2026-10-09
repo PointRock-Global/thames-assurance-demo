@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"/>
+<title>Thames Assurance · Portfolio at a glance</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --tw-blue:#009CDE; --navy:#0A2540; --rail-w:248px;
+  --font:"Inter","Segoe UI",system-ui,sans-serif;
+  /* Colour-blind-aware RAG (vermilion / amber / bluish-green, Okabe-Ito family). Always paired with a text label. */
+  --r:#E8664A; --a:#EFB23B; --g:#2FB38E;
+  --r-soft:rgba(232,102,74,0.16); --a-soft:rgba(239,178,59,0.16); --g-soft:rgba(47,179,142,0.16);
+  --ink:#EAF3FA; --ink-2:#A9C1D3; --ink-3:#6F8BA2;
+  --card:#0F1A2C; --card-2:#111F34; --line:rgba(125,211,240,0.12);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { width:1440px; height:900px; overflow:hidden; font-family:var(--font); background:#050810; color:var(--ink); }
+
+/* ---------- Rail (same chrome as Sites Portfolio) ---------- */
+.rail { position:absolute; left:0; top:0; bottom:0; width:var(--rail-w); background:#fff; color:var(--navy); display:flex; flex-direction:column; z-index:30; box-shadow:4px 0 24px rgba(5,8,16,0.35); }
+.rail-brand { padding:18px 18px 16px; display:flex; align-items:center; gap:12px; }
+.logo-plate { flex-shrink:0; width:52px; height:52px; border-radius:14px; background:#fff; display:grid; place-items:center; box-shadow:0 1px 0 rgba(10,37,64,0.06),0 0 0 1px rgba(10,37,64,0.08); }
+.logo-plate img { width:44px; height:44px; border-radius:50%; display:block; }
+.brand-text .org { font-size:11px; font-weight:700; letter-spacing:0.08em; color:var(--navy); text-transform:uppercase; }
+.brand-text .app { font-size:12.5px; font-weight:600; color:#3A556E; margin-top:2px; }
+.divider { height:1px; margin:0 16px; background:var(--navy); opacity:0.18; }
+.nav { padding:14px 12px 8px; display:flex; flex-direction:column; gap:2px; flex:1; }
+.nav-label { font-size:10px; font-weight:700; letter-spacing:0.1em; color:#6A8299; text-transform:uppercase; padding:6px 12px 8px; }
+.nav-item { display:flex; align-items:center; gap:11px; padding:10px 12px; border-radius:10px; font-size:13.5px; font-weight:500; color:#3A556E; }
+.nav-item svg { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+.nav-item.active { background:rgba(0,156,222,0.12); color:#0077A8; font-weight:650; box-shadow:inset 0 0 0 1px rgba(0,156,222,0.35); }
+.nav-item .badge-n { margin-left:auto; font-size:10px; font-weight:700; padding:2px 7px; border-radius:999px; background:rgba(239,68,68,0.12); color:#B91C1C; }
+.nav-section-gap { height:8px; }
+.rail-foot { padding:12px 14px 16px; }
+.user-card { display:flex; align-items:center; gap:10px; padding:10px; border-radius:12px; background:#F4F8FB; border:1px solid rgba(10,37,64,0.08); }
+.avatar { width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#009CDE,#005A8C); color:#fff; font-size:12px; font-weight:700; display:grid; place-items:center; }
+.user-meta .name { font-size:12.5px; font-weight:650; color:var(--navy); }
+.user-meta .role { font-size:11px; color:#6A8299; margin-top:1px; }
+.user-meta .tier-tag { display:inline-block; margin-top:3px; font-size:9.5px; font-weight:700; letter-spacing:0.03em; color:#0077A8; background:rgba(0,156,222,0.1); border:1px solid rgba(0,156,222,0.3); padding:1px 6px; border-radius:8px; }
+.logout-btn { display:flex; align-items:center; justify-content:center; gap:7px; width:100%; margin-top:8px; padding:7px 10px; border-radius:9px; border:1px solid rgba(10,37,64,0.14); background:#fff; color:#3A556E; font-family:inherit; font-size:11px; font-weight:650; letter-spacing:0.04em; cursor:pointer; }
+.logout-btn svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ---------- Top bar ---------- */
+.topbar { position:absolute; left:var(--rail-w); right:0; top:0; height:64px; display:flex; align-items:center; gap:16px; padding:0 96px 0 22px; background:linear-gradient(180deg,rgba(8,12,22,0.98),rgba(8,12,22,0.88)); border-bottom:1px solid rgba(0,163,224,0.14); z-index:20; }
+.hdr-logo { width:40px; height:40px; border-radius:10px; background:#fff; display:grid; place-items:center; flex-shrink:0; box-shadow:0 0 0 1px rgba(255,255,255,0.12),0 4px 12px rgba(0,0,0,0.25); }
+.hdr-logo img { width:34px; height:34px; border-radius:50%; display:block; }
+.brand-title { font-size:16px; font-weight:750; color:#F2F7FB; }
+.brand-sub { font-size:11px; color:#7DD3F0; font-weight:600; letter-spacing:0.1em; margin-top:2px; }
+.view-as { display:flex; align-items:center; gap:8px; margin-left:auto; }
+.view-as .va-lab { font-size:10.5px; font-weight:650; color:#7AA0B8; }
+.view-as .va-pills { display:flex; gap:2px; padding:2px; border-radius:999px; background:rgba(10,37,64,0.6); border:1px solid rgba(0,163,224,0.22); }
+.view-as .va-pills span { font-size:10.5px; font-weight:650; color:#8AA0B5; padding:4px 10px; border-radius:999px; cursor:default; }
+.view-as .va-pills span.on { background:#009CDE; color:#fff; }
+.view-as .va-note { font-size:9.5px; color:#6A8299; }
+
+/* ---------- Main ---------- */
+.main { position:absolute; left:var(--rail-w); top:64px; right:0; bottom:0; overflow:hidden; padding:16px 24px 12px;
+  background:radial-gradient(900px 420px at 85% -10%, rgba(0,156,222,0.10), transparent 60%), radial-gradient(700px 400px at 0% 110%, rgba(47,179,142,0.05), transparent 60%), #0A111E;
+  display:flex; flex-direction:column; gap:12px; }
+.head { display:flex; align-items:flex-end; justify-content:space-between; }
+.head h1 { font-size:24px; font-weight:800; letter-spacing:-0.02em; color:#F4F9FD; }
+.head .sub { font-size:12.5px; color:var(--ink-2); margin-top:4px; }
+.head .sub b { color:#CFE6F4; font-weight:650; }
+.head-links { display:flex; gap:8px; }
+.lnk { display:inline-flex; align-items:center; gap:7px; padding:8px 14px; border-radius:10px; font-size:12px; font-weight:650; color:#D7ECF8; background:rgba(0,156,222,0.10); border:1px solid rgba(0,163,224,0.35); cursor:pointer; text-decoration:none; }
+.lnk:hover { background:rgba(0,156,222,0.2); }
+.lnk svg { width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ---------- Hero strip ---------- */
+.hero { display:grid; grid-template-columns:300px 1fr 380px; gap:14px; height:148px; }
+.panel { background:linear-gradient(180deg,var(--card-2),var(--card)); border:1px solid var(--line); border-radius:16px; padding:14px 18px; position:relative; overflow:hidden; }
+.kicker { white-space:nowrap; font-size:10px; font-weight:750; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3); }
+.p-score { display:flex; align-items:center; gap:18px; }
+.p-score .gauge { width:108px; height:108px; } .p-score .gauge svg { width:108px; height:108px; }
+.p-score .big { font-size:12px; color:var(--ink-2); line-height:1.4; display:flex; flex-direction:column; gap:7px; align-items:flex-start; }
+.p-score .big b { font-size:20px; color:#F4F9FD; font-weight:800; letter-spacing:-0.01em; }
+.band { display:inline-flex; align-items:center; gap:6px; font-size:10.5px; font-weight:750; letter-spacing:0.06em; text-transform:uppercase; padding:3px 9px; border-radius:999px; }
+.band i { width:7px; height:7px; border-radius:50%; display:inline-block; }
+.band.r { color:#FFB4A3; background:var(--r-soft); } .band.r i { background:var(--r); }
+.band.a { color:#FFD98A; background:var(--a-soft); } .band.a i { background:var(--a); }
+.band.g { color:#8EE6C8; background:var(--g-soft); } .band.g i { background:var(--g); }
+
+.split-top { display:flex; align-items:baseline; justify-content:space-between; }
+.split-top .tot { font-size:12px; color:var(--ink-2); }
+.split-top .tot b { font-size:22px; color:#F4F9FD; font-weight:800; margin-right:4px; }
+.dots { display:grid; grid-template-columns:repeat(25, 1fr); gap:4px; margin:14px 0 12px; }
+.dots i { aspect-ratio:1; border-radius:4px; display:block; }
+.dots i.r { background:var(--r); } .dots i.a { background:var(--a); } .dots i.g { background:var(--g); opacity:0.85; }
+.legend { display:flex; gap:22px; font-size:12px; color:var(--ink-2); }
+.legend span { display:flex; align-items:center; gap:7px; }
+.legend b { color:#F4F9FD; font-size:15px; font-weight:800; }
+.legend i { width:10px; height:10px; border-radius:3px; display:inline-block; }
+.sites-mini { margin-left:auto; text-align:right; }
+
+.bands { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
+.bcol { border-radius:11px; padding:8px 11px 9px; min-height:96px; border:1px solid rgba(255,255,255,0.06); display:flex; flex-direction:column; gap:3px; }
+.bcol.r { background:var(--r-soft); } .bcol.a { background:var(--a-soft); } .bcol.g { background:var(--g-soft); }
+.bcol .bh { display:flex; align-items:center; justify-content:space-between; font-size:10px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:2px; }
+.bcol.r .bh { color:#FFB4A3; } .bcol.a .bh { color:#FFD98A; } .bcol.g .bh { color:#8EE6C8; }
+.bcol .bh b { font-size:16px; color:#F4F9FD; }
+.bcol .sn { font-size:12px; font-weight:650; color:#E4F0F8; cursor:pointer; display:flex; justify-content:space-between; white-space:nowrap; }
+.bcol .sn em { font-style:normal; color:var(--ink-2); font-weight:700; }
+.bcol .sn:hover { text-decoration:underline; }
+.bcol .none { font-size:11px; color:var(--ink-3); font-style:italic; }
+
+/* ---------- Site cards ---------- */
+.grid { flex:1; min-height:0; display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(2,1fr); gap:14px; }
+.card { position:relative; background:linear-gradient(180deg,var(--card-2),var(--card)); border:1px solid var(--line); border-radius:16px; padding:14px 18px 12px 22px; display:flex; flex-direction:column; gap:10px; cursor:pointer; transition:transform .15s, border-color .15s, box-shadow .15s; overflow:hidden; }
+.card::before { content:""; position:absolute; left:0; top:0; bottom:0; width:5px; background:var(--accent); }
+.card::after { content:""; position:absolute; right:-60px; top:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, var(--glow), transparent 70%); pointer-events:none; }
+.card:hover { transform:translateY(-2px); border-color:rgba(125,211,240,0.35); box-shadow:0 14px 30px rgba(0,0,0,0.35); }
+.card.r { --accent:var(--r); --glow:rgba(232,102,74,0.16); }
+.card.a { --accent:var(--a); --glow:rgba(239,178,59,0.11); }
+.card.g { --accent:var(--g); --glow:rgba(47,179,142,0.09); }
+.c-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+.rank { font-size:10px; font-weight:750; letter-spacing:0.1em; color:var(--ink-3); text-transform:uppercase; }
+.c-name { font-size:21px; font-weight:800; letter-spacing:-0.01em; color:#F6FBFE; margin-top:2px; }
+.chips { display:flex; gap:6px; margin-top:7px; flex-wrap:wrap; }
+.chip { font-size:10.5px; font-weight:650; color:#BFD7E7; padding:3px 9px; border-radius:999px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09); }
+.chip.reg { color:#9FDDF5; background:rgba(0,156,222,0.10); border-color:rgba(0,163,224,0.25); }
+.c-mid { display:flex; align-items:center; gap:20px; flex:1; min-height:0; }
+.gauge { position:relative; width:90px; height:90px; flex-shrink:0; }
+.gauge svg { width:90px; height:90px; transform:rotate(-90deg); }
+.gauge .val { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.gauge .val b { font-size:28px; font-weight:800; letter-spacing:-0.03em; line-height:1; color:#F6FBFE; }
+.gauge .val span { font-size:9.5px; font-weight:650; color:var(--ink-3); margin-top:3px; letter-spacing:0.04em; }
+.rsum { flex:1; min-width:0; }
+.rsum .lab { font-size:10px; font-weight:750; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:8px; display:flex; justify-content:space-between; }
+.seg { display:flex; height:12px; border-radius:6px; overflow:hidden; gap:2px; }
+.seg i { display:block; height:100%; }
+.seg i.r { background:var(--r); } .seg i.a { background:var(--a); } .seg i.g { background:var(--g); opacity:0.85; }
+.counts { display:flex; justify-content:space-between; margin-top:7px; font-size:11px; color:var(--ink-2); }
+.counts b { color:#F4F9FD; font-weight:800; font-size:13px; margin-right:3px; }
+.c-prog { border-top:1px solid rgba(255,255,255,0.06); padding-top:9px; }
+.c-prog .row { display:flex; justify-content:space-between; align-items:baseline; font-size:10px; font-weight:750; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); }
+.c-prog .row b { font-size:15px; color:#DCEBF5; letter-spacing:-0.01em; font-weight:800; }
+.c-prog .row b small { font-size:9.5px; font-weight:600; color:var(--ink-3); letter-spacing:0.02em; text-transform:none; margin-left:5px; }
+.pbar { position:relative; height:6px; border-radius:3px; background:rgba(255,255,255,0.07); margin-top:7px; overflow:hidden; }
+.pbar i { position:absolute; left:0; top:0; bottom:0; border-radius:3px; }
+/* Same colour logic as the Progress row on 00-sites-portfolio.html */
+.c-prog.on .pbar i { background:linear-gradient(90deg,#D97706,#F59E0B); } .c-prog.on .row b, .c-prog.on .pst { color:#F5B041; }
+.c-prog.behind .pbar i { background:linear-gradient(90deg,#B91C1C,#EF4444); } .c-prog.behind .row b, .c-prog.behind .pst { color:#F87171; }
+.c-prog.good .pbar i { background:linear-gradient(90deg,#16A34A,#4ADE80); } .c-prog.good .row b, .c-prog.good .pst { color:#4ADE80; }
+.pst { font-size:9.5px; font-weight:750; letter-spacing:0.06em; margin-left:8px; }
+.open { position:absolute; right:16px; bottom:13px; }
+
+/* ---------- Footnotes ---------- */
+.foot { display:flex; gap:28px; font-size:10.5px; color:var(--ink-3); line-height:1.45; }
+.foot b { color:var(--ink-2); font-weight:700; }
+.foot .f1 { flex:1.45; } .foot .f2 { flex:1; }
+</style>
+<link rel="stylesheet" href="../nav.css"/>
+</head><body data-demo-site="shared">
+
+<svg style="display:none">
+  <symbol id="i-overview" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 12l4.5-4.5"/><path d="M12 3.5v2M20.5 12h-2M3.5 12h2"/></symbol>
+  <symbol id="i-portfolio" viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="7" rx="1"/><rect x="14" y="4" width="7" height="7" rx="1"/><rect x="3" y="13" width="7" height="7" rx="1"/><rect x="14" y="13" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 3l6 2 6-2v16l-6 2-6-2-6 2V5l6-2z"/><path d="M9 3v16M15 5v16"/></symbol>
+  <symbol id="i-regions" viewBox="0 0 24 24"><path d="M4 6l8-3 8 3v12l-8 3-8-3V6z"/><path d="M12 3v18M4 12h16"/></symbol>
+  <symbol id="i-prog" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16"/><path d="M8 15V9M12 15V7M16 15v-3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0112 0c0 7 2 7 2 9H4c0-2 2-2 2-9"/><path d="M10 20a2 2 0 004 0"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<aside class="rail">
+  <div class="rail-brand">
+    <div class="logo-plate"><img src="tw-logo-128.png" alt="Thames Water"/></div>
+    <div class="brand-text"><div class="org">Thames Water</div><div class="app">Thames Assurance</div></div>
+  </div>
+  <div class="divider"></div>
+  <nav class="nav">
+    <div class="nav-label">Navigate</div>
+    <div class="nav-item active" data-demo-nav="overview"><svg><use href="#i-overview"/></svg>Overview</div>
+    <div class="nav-item" data-demo-nav="portfolio"><svg><use href="#i-portfolio"/></svg>Portfolio</div>
+    <div class="nav-item" data-demo-nav="map"><svg><use href="#i-map"/></svg>Map</div>
+    <div class="nav-item" data-demo-nav="regions"><svg><use href="#i-regions"/></svg>Regions</div>
+    <div class="nav-section-gap"></div>
+    <div class="divider" style="margin:4px 4px 10px"></div>
+    <div class="nav-label">Programme</div>
+    <div class="nav-item" data-demo-nav="programme"><svg><use href="#i-prog"/></svg>Programme</div>
+    <div class="nav-item" data-demo-nav="assurance"><svg><use href="#i-shield"/></svg>Assurance</div>
+    <div class="nav-item" data-demo-nav="reports"><svg><use href="#i-doc"/></svg>Reports</div>
+    <div class="nav-item" data-demo-nav="alerts"><svg><use href="#i-bell"/></svg>Alerts <span class="badge-n">3</span></div>
+    <div class="nav-section-gap"></div>
+    <div class="divider" style="margin:4px 4px 10px"></div>
+    <div class="nav-item" data-demo-nav="settings"><svg><use href="#i-gear"/></svg>Settings</div>
+  </nav>
+  <div class="divider"></div>
+  <div class="rail-foot">
+    <div class="user-card">
+      <div class="avatar">RU</div>
+      <div class="user-meta"><div class="name">Roselyn U.</div><div class="role">LNI Director</div><div class="tier-tag">Portfolio tier</div></div>
+    </div>
+    <button class="logout-btn" type="button" data-demo-nav="logout"><svg><use href="#i-logout"/></svg>Log out</button>
+  </div>
+</aside>
+
+<header class="topbar">
+  <div class="hdr-logo"><img src="tw-logo-128.png" alt="Thames Water"/></div>
+  <div>
+    <div class="brand-title">Thames Assurance</div>
+    <div class="brand-sub">PORTFOLIO AT A GLANCE · Q3 2026</div>
+  </div>
+  <div class="view-as" title="Demo only: tier view is not wired">
+    <span class="va-lab">Viewing as</span>
+    <div class="va-pills"><span class="on">Portfolio</span><span>Programme</span><span>Project</span><span>Inspection</span></div>
+    <span class="va-note">Demo, not wired</span>
+  </div>
+</header>
+
+<main class="main">
+  <div class="head">
+    <div>
+      <h1 id="headline">Hello Roselyn. Here's your Portfolio.</h1>
+      <div class="sub" id="subline"></div>
+    </div>
+    <div class="head-links">
+      <a class="lnk" data-demo-nav="portfolio"><svg><use href="#i-portfolio"/></svg>Full portfolio</a>
+      <a class="lnk" data-demo-nav="map"><svg><use href="#i-map"/></svg>Map</a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="panel p-score">
+      <div class="gauge" id="pgauge"></div>
+      <div class="big"><span class="kicker">Portfolio risk score</span><b id="pband-label"></b><span id="pband"></span></div>
+    </div>
+    <div class="panel">
+      <div class="split-top">
+        <span class="kicker">Open risks · RAG split</span>
+        <span class="tot"><b id="ptotal"></b>open risks across 6 sites</span>
+      </div>
+      <div class="dots" id="pdots"></div>
+      <div class="legend" id="plegend"></div>
+    </div>
+    <div class="panel">
+      <div class="kicker">Sites by risk band</div>
+      <div class="bands" id="pbands"></div>
+    </div>
+  </section>
+
+  <section class="grid" id="cards"></section>
+
+  <div class="foot">
+    <div class="f1"><b>How the risk score is calculated.</b> Open risks weighted by severity (Low 0, Medium 1, High 2, Extreme 3). Score = 100 × sum of weights ÷ (3 × open risks): 0 = all Low, 100 = all Extreme. Bands: Green under 20, Amber 20 to 34, Red 35+ or any Extreme. RAG counts: Red = High + Extreme, Amber = Medium, Green = Low. Risk register snapshot, Sep 2026.</div>
+    <div class="f2"><b>Reported progress</b> is the Progress row of the full portfolio (value and status), contractor-reported and not verified by PointRock. Scores describe the risk record, not a safety determination. Demo placeholder data.</div>
+  </div>
+</main>
+
+<script>
+(function () {
+  // Source: 00-sites-portfolio.html rows: Region, Type, Progress (value + status + bar colour), Risk Radar Sep 2026. No new data.
+  var SITES = [
+    { id:'beckton',   name:'Beckton',   region:'London',   type:'STW Upgrade', sub:'Civils · MEICA',     progress:61, pstatus:'ON TRACK', pcls:'on', risk:{ L:4, M:2, H:1, E:0 } },
+    { id:'oxford',    name:'Oxford',    region:'TV & HC',  type:'STW Upgrade', sub:'Capacity · Quality', progress:34, pstatus:'BEHIND', pcls:'behind', risk:{ L:2, M:5, H:3, E:1 } },
+    { id:'crossness', name:'Crossness', region:'London',   type:'STW Upgrade', sub:'Capacity',           progress:48, pstatus:'ON TRACK', pcls:'on', risk:{ L:5, M:3, H:1, E:0 } },
+    { id:'mogden',    name:'Mogden',    region:'London',   type:'STW Upgrade', sub:'Sludge hub',         progress:72, pstatus:'AHEAD', pcls:'good', risk:{ L:6, M:2, H:0, E:0 } },
+    { id:'hogsmill',  name:'Hogsmill',  region:'London',   type:'Storm tanks', sub:'AMP8 major',         progress:29, pstatus:'ON TRACK', pcls:'on', risk:{ L:3, M:2, H:1, E:0 } },
+    { id:'deephams',  name:'Deephams',  region:'London',   type:'Capacity',    sub:'Lea catchment',      progress:41, pstatus:'WATCH', pcls:'on', risk:{ L:4, M:3, H:1, E:0 } }
+  ];
+  var COL = { r:'#E8664A', a:'#EFB23B', g:'#2FB38E' };
+  var BAND_TXT = { r:'Red', a:'Amber', g:'Green' };
+
+  function score(k) {               // severity-weighted index, 0..100
+    var n = k.L + k.M + k.H + k.E;
+    return n ? Math.round(100 * (k.M * 1 + k.H * 2 + k.E * 3) / (3 * n)) : 0;
+  }
+  function band(s, k) { if (k.E > 0 || s >= 35) return 'r'; if (s >= 20) return 'a'; return 'g'; }
+  function rag(k) { return { r:k.H + k.E, a:k.M, g:k.L }; }
+
+  SITES.forEach(function (s) { s.score = score(s.risk); s.band = band(s.score, s.risk); s.rag = rag(s.risk); });
+  SITES.sort(function (a, b) { return b.score - a.score || a.progress - b.progress; });
+
+  function ring(size, stroke, pct, colour, track) {
+    var r = (size - stroke) / 2, c = 2 * Math.PI * r, d = c * pct / 100;
+    return '<svg viewBox="0 0 ' + size + ' ' + size + '" width="' + size + '" height="' + size + '">' +
+      '<circle cx="' + size/2 + '" cy="' + size/2 + '" r="' + r + '" fill="none" stroke="' + (track || 'rgba(255,255,255,0.07)') + '" stroke-width="' + stroke + '"/>' +
+      '<circle cx="' + size/2 + '" cy="' + size/2 + '" r="' + r + '" fill="none" stroke="' + colour + '" stroke-width="' + stroke + '" stroke-linecap="round" stroke-dasharray="' + d.toFixed(1) + ' ' + c.toFixed(1) + '"/></svg>';
+  }
+  function bandPill(b) { return '<span class="band ' + b + '"><i></i>' + BAND_TXT[b] + '</span>'; }
+
+  // ---- Portfolio totals ----
+  var T = { L:0, M:0, H:0, E:0 };
+  SITES.forEach(function (s) { T.L += s.risk.L; T.M += s.risk.M; T.H += s.risk.H; T.E += s.risk.E; });
+  var pScore = score(T), pBand = (pScore >= 35) ? 'r' : (pScore >= 20 ? 'a' : 'g'); // portfolio band by score only
+  var pr = rag(T), total = T.L + T.M + T.H + T.E;
+  var nb = { r:0, a:0, g:0 }; SITES.forEach(function (s) { nb[s.band]++; });
+
+  document.getElementById('pgauge').innerHTML = ring(108, 10, pScore, COL[pBand]) +
+    '<div class="val"><b>' + pScore + '</b><span>OUT OF 100</span></div>';
+  document.getElementById('pband-label').innerHTML = '<span style="color:' + COL[pBand] + '">' + BAND_TXT[pBand] + '</span> overall';
+  document.getElementById('pband').innerHTML = '<span style="white-space:nowrap">6 sites · ' + total + ' open risks</span><span style="display:block;margin-top:2px;white-space:nowrap">Lower is better</span>';
+
+  var dots = '';
+  for (var i = 0; i < pr.r; i++) dots += '<i class="r" title="Red"></i>';
+  for (i = 0; i < pr.a; i++) dots += '<i class="a" title="Amber"></i>';
+  for (i = 0; i < pr.g; i++) dots += '<i class="g" title="Green"></i>';
+  document.getElementById('pdots').innerHTML = dots;
+  document.getElementById('ptotal').textContent = total;
+  document.getElementById('plegend').innerHTML =
+    '<span><i style="background:' + COL.r + '"></i><b>' + pr.r + '</b>Red</span>' +
+    '<span><i style="background:' + COL.a + '"></i><b>' + pr.a + '</b>Amber</span>' +
+    '<span><i style="background:' + COL.g + '"></i><b>' + pr.g + '</b>Green</span>';
+
+  var worst = SITES[0];
+  document.getElementById('subline').innerHTML = '<b>' + worst.name + '</b> needs your attention first (risk score ' + worst.score +
+    '). Sites are ordered by risk score, highest first. Click any site to open it.';
+
+  // ---- Sites grouped by band ----
+  var bh = '';
+  ['r', 'a', 'g'].forEach(function (k) {
+    var list = SITES.filter(function (x) { return x.band === k; });
+    bh += '<div class="bcol ' + k + '"><div class="bh"><span>' + BAND_TXT[k] + '</span><b>' + list.length + '</b></div>' +
+      (list.length ? list.map(function (x) { return '<span class="sn" data-exec-site="' + x.id + '">' + x.name + '<em>' + x.score + '</em></span>'; }).join('') : '<span class="none">None</span>') + '</div>';
+  });
+  document.getElementById('pbands').innerHTML = bh;
+
+  // ---- Site cards ----
+  var html = '';
+  SITES.forEach(function (s, idx) {
+    var n = s.rag.r + s.rag.a + s.rag.g;
+    var seg = ['r', 'a', 'g'].filter(function (k) { return s.rag[k] > 0; }).map(function (k) {
+      return '<i class="' + k + '" style="flex:' + s.rag[k] + '" title="' + BAND_TXT[k] + ' ' + s.rag[k] + '"></i>';
+    }).join('');
+    var live = (s.id === 'beckton' || s.id === 'oxford');
+    html += '<article class="card ' + s.band + '" data-exec-site="' + s.id + '"' + (live ? ' data-demo-nav="open-site" data-demo-site="' + s.id + '"' : '') + ' title="' + (live ? 'Open ' + s.name + ' site board' : 'Open full portfolio') + '">' +
+      '<div class="c-top"><div><div class="rank">#' + (idx + 1) + ' by risk</div><div class="c-name">' + s.name + '</div>' +
+      '<div class="chips"><span class="chip reg">' + s.region + '</span><span class="chip">' + s.type + ' · ' + s.sub + '</span></div></div>' +
+      bandPill(s.band) + '</div>' +
+      '<div class="c-mid"><div class="gauge">' + ring(90, 8, s.score, COL[s.band]) + '<div class="val"><b>' + s.score + '</b><span>RISK SCORE</span></div></div>' +
+      '<div class="rsum"><div class="lab"><span>Risk summary</span><span>' + n + ' open</span></div><div class="seg">' + seg + '</div>' +
+      '<div class="counts"><span><b>' + s.rag.r + '</b>Red</span><span><b>' + s.rag.a + '</b>Amber</span><span><b>' + s.rag.g + '</b>Green</span></div></div></div>' +
+      '<div class="c-prog ' + s.pcls + '"><div class="row"><span>Reported progress<small style="font-size:9.5px;font-weight:600;color:#6F8BA2;letter-spacing:0.02em;text-transform:none;margin-left:6px">contractor-reported</small></span><b>' + s.progress + '%<span class="pst">' + s.pstatus + '</span></b></div>' +
+      '<div class="pbar"><i style="width:' + s.progress + '%"></i></div></div>' +
+      '</article>';
+  });
+  document.getElementById('cards').innerHTML = html;
+
+})();
+</script>
+<script src="../nav.js"></script>
+</body></html>

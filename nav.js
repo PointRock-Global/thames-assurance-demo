@@ -10,6 +10,7 @@
 
   var ROUTES = {
     login: '01-login-dark.html',
+    overview: '00a-exec-overview-glass-d.html', // EXEC-OVERVIEW: post-login landing + rail 'Overview' (Option D approved 9 Oct 2026; was glass-c, originally '00a-exec-overview.html')
     portfolio: '00-sites-portfolio.html',
     map: '02-map-home.html',
     london: '03-region-sites.html',
@@ -88,6 +89,7 @@
     if (key) return key;
     var t = textOf(el);
     if (/Site Dashboard/i.test(t)) return 'dashboard';
+    if (/^Overview$/i.test(t)) return 'overview'; // EXEC-OVERVIEW
     if (/^Portfolio$/i.test(t) || /^All sites$/i.test(t)) return 'portfolio';
     if (/Overview\s*\/\s*Map/i.test(t) || /^Map$/i.test(t)) return 'map';
     if (/^Regions$/i.test(t)) return 'regions';
@@ -128,6 +130,12 @@
 
     if (key === 'portfolio') {
       go(ROUTES.portfolio);
+      return true;
+    }
+
+    // EXEC-OVERVIEW: high-level portfolio overview (post-login landing)
+    if (key === 'overview') {
+      go(ROUTES.overview);
       return true;
     }
 
@@ -290,11 +298,12 @@
   function wireLogin() {
     if (file.indexOf('01-login') !== 0) return;
     var btn = document.querySelector('.btn');
-    onClick(btn, function () { go(ROUTES.portfolio); });
+    // EXEC-OVERVIEW: login lands on the overview (was ROUTES.portfolio)
+    onClick(btn, function () { go(ROUTES.overview); });
     var sso = document.querySelector('.sso');
-    onClick(sso, function () { go(ROUTES.portfolio); });
+    onClick(sso, function () { go(ROUTES.overview); });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') go(ROUTES.portfolio);
+      if (e.key === 'Enter') go(ROUTES.overview);
     });
   }
 
@@ -735,6 +744,7 @@
     // Always keep Portfolio as the first item under Navigate (back to 6-site home).
     if (file.indexOf('01-login') === 0) return;
     if (file.indexOf('00-sites-portfolio') === 0) return;
+    if (file.indexOf('00a-exec') === 0) return; // EXEC-OVERVIEW: rail is hand-built (Overview, Portfolio)
     var nav = document.querySelector('.rail .nav');
     if (!nav) return;
     var existing = nav.querySelector('[data-demo-nav="portfolio"]');
@@ -765,7 +775,7 @@
     if (!crumbs) return;
     if (/Portfolio/i.test(textOf(crumbs))) return;
     // Prepend Portfolio link for site / region screens
-    if (file.indexOf('01-login') === 0 || file.indexOf('00-sites') === 0 || file.indexOf('02-map') === 0) return;
+    if (file.indexOf('01-login') === 0 || file.indexOf('00-sites') === 0 || file.indexOf('00a-exec') === 0 || file.indexOf('02-map') === 0) return;
     var span = document.createElement('span');
     span.className = 'demo-crumb demo-linked';
     span.textContent = 'Portfolio';
@@ -782,6 +792,42 @@
     onClick(span, function () { go(ROUTES.portfolio); });
   }
 
+  // EXEC-OVERVIEW: add an "Overview" rail item above Portfolio on the two shared
+  // top-level screens (Sites Portfolio, Map Home) so the overview is reachable again.
+  function ensureOverviewNav() {
+    if (file.indexOf('00-sites-portfolio') !== 0 && file.indexOf('02-map') !== 0) return;
+    var nav = document.querySelector('.rail .nav');
+    if (!nav || nav.querySelector('[data-demo-nav="overview"]')) return;
+    var port = nav.querySelector('[data-demo-nav="portfolio"]');
+    var item = document.createElement('div');
+    item.className = 'nav-item';
+    item.setAttribute('data-demo-nav', 'overview');
+    item.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 12l4.5-4.5"/><path d="M12 3.5v2M20.5 12h-2M3.5 12h2"/></svg>Overview';
+    if (port) nav.insertBefore(item, port);
+    else {
+      var label = nav.querySelector('.nav-label');
+      nav.insertBefore(item, label ? label.nextSibling : nav.firstChild);
+    }
+  }
+
+  // EXEC-OVERVIEW: site cards + band list names → site board (Beckton/Oxford) or full portfolio
+  function wireExecOverview() {
+    if (file.indexOf('00a-exec') !== 0) return;
+    function dest(s) {
+      if (s === 'beckton') return ROUTES.becktonGt;
+      if (s === 'oxford') return ROUTES.oxfordGt;
+      return ROUTES.portfolio;
+    }
+    document.querySelectorAll('[data-exec-site]').forEach(function (el) {
+      var s = (el.getAttribute('data-exec-site') || '').toLowerCase();
+      onClick(el, function () { go(dest(s)); });
+    });
+    document.querySelectorAll('.head-links [data-demo-nav]').forEach(function (el) {
+      var key = el.getAttribute('data-demo-nav');
+      onClick(el, function () { handleRailNav(key); });
+    });
+  }
+
   function wireBriefLinks() {
     document.querySelectorAll('a[data-demo-nav="brief"], .brief-link').forEach(function (el) {
       if (el.closest('.rail')) return;
@@ -792,6 +838,7 @@
   function init() {
     addDemoBadge();
     ensureAllSitesNav();
+    ensureOverviewNav(); // EXEC-OVERVIEW
     wireLogout();
     wireSiteRail();
     ensurePortfolioCrumb();
@@ -811,6 +858,7 @@
     wireReports();
     wireAssurance();
     wireBriefLinks();
+    wireExecOverview(); // EXEC-OVERVIEW
   }
 
   if (document.readyState === 'loading') {
