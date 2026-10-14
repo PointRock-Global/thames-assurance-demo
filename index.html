@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Dahju demo</title>
   <script>
-    // Phones get the short tour first; tablets and computers go straight to sign in.
+    // Phones get the welcome page first; tablets and computers go straight to sign in.
     (function () {
       var phone = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
       location.replace(phone ? 'screens/mobile-tour.html' : 'screens/01-login-dark.html');
@@ -44,7 +44,7 @@
       <div class="brand">Dahju<span>*</span></div>
       <p>Opening the demo.</p>
       <a href="screens/01-login-dark.html">Open the demo</a>
-      <a href="screens/mobile-tour.html">Quick phone tour</a>
+      <a href="screens/mobile-tour.html">Welcome page</a>
     </div>
   </div>
 </body>
