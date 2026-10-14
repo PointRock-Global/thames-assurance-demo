@@ -21,7 +21,17 @@
     html, body { min-height: 100%; background: #000; color: #fff; font-family: "Liberation Sans", Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
     body { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center;
       background: #000 url('bg-welcome.jpg') center / cover no-repeat;
-      padding: calc(24px + env(safe-area-inset-top)) 24px calc(28px + env(safe-area-inset-bottom)); text-align: center; }
+      padding: calc(24px + env(safe-area-inset-top)) 24px calc(28px + env(safe-area-inset-bottom)); text-align: center;
+      position: relative; }
+    /* Heavy dark overlay + centred vignette so Dahju / orange stand out; network lights stay faintly visible */
+    body::before {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.95) 100%),
+        rgba(0,0,0,0.45);
+    }
+    main, footer { position: relative; z-index: 1; }
     main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 520px; }
     .brand { font-weight: 700; font-size: clamp(56px, 16vw, 96px); line-height: 1; letter-spacing: -0.01em; color: #fff; text-shadow: 0 2px 24px rgba(0,0,0,0.6); }
     .brand .ast { color: var(--or); }
