@@ -3,27 +3,49 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Thames Assurance — Live Demo</title>
-  <meta http-equiv="refresh" content="0; url=screens/01-login-dark.html"/>
-  <link rel="stylesheet" href="nav.css"/>
+  <title>Dahju demo</title>
+  <script>
+    // Phones get the short tour first; tablets and computers go straight to sign in.
+    (function () {
+      var phone = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+      location.replace(phone ? 'screens/mobile-tour.html' : 'screens/01-login-dark.html');
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=screens/01-login-dark.html"/></noscript>
+  <meta name="description" content="Real-time certainty. Independently assured."/>
+  <link rel="manifest" href="manifest.webmanifest"/>
+  <meta name="theme-color" content="#050505"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"/>
+  <meta name="apple-mobile-web-app-title" content="Dahju"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://pointrock-global.github.io/thames-assurance-demo/"/>
+  <meta property="og:title" content="Dahju demo"/>
+  <meta property="og:description" content="Real-time certainty. Independently assured."/>
+  <meta property="og:image" content="https://pointrock-global.github.io/thames-assurance-demo/icons/og-card.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Dahju demo"/>
+  <meta name="twitter:description" content="Real-time certainty. Independently assured."/>
+  <meta name="twitter:image" content="https://pointrock-global.github.io/thames-assurance-demo/icons/og-card.png"/>
   <style>
-    html, body { height: 100%; margin: 0; font-family: Inter, system-ui, sans-serif; background: #050810; color: #EAF6FC; }
-    .wrap { min-height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 32px; }
-    a { color: #4DC4F0; font-weight: 600; }
-    .card { background: rgba(12,22,42,0.85); border: 1px solid rgba(0,180,240,0.35); border-radius: 18px; padding: 36px 40px; max-width: 420px; }
-    h1 { font-size: 20px; margin: 0 0 8px; }
-    p { font-size: 13.5px; color: rgba(200,220,235,0.65); margin: 0 0 18px; line-height: 1.45; }
-    .btn { display: inline-block; padding: 12px 22px; border-radius: 12px; background: linear-gradient(180deg,#00B4F0,#009CDE); color: #fff; text-decoration: none; font-weight: 650; }
+    html, body { height: 100%; margin: 0; font-family: "Liberation Sans", Arial, sans-serif; background: #000; color: #fff; }
+    .wrap { min-height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 32px; box-sizing: border-box; }
+    .brand { font-weight: 700; font-size: 40px; }
+    .brand span { color: #F06E1E; }
+    a { display: inline-block; margin: 18px 8px 0; color: #F06E1E; font-weight: 700; min-height: 44px; line-height: 44px; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="card">
-      <h1>Thames Assurance · Live Demo</h1>
-      <p>Static clickable prototype. If you are not redirected automatically, open Login below.</p>
-      <a class="btn" href="screens/01-login-dark.html">Open Login →</a>
+    <div>
+      <div class="brand">Dahju<span>*</span></div>
+      <p>Opening the demo.</p>
+      <a href="screens/01-login-dark.html">Open the demo</a>
+      <a href="screens/mobile-tour.html">Quick phone tour</a>
     </div>
   </div>
-  <script>location.replace('screens/01-login-dark.html');</script>
 </body>
 </html>
