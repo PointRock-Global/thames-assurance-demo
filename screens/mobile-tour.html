@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>Dahju demo · Quick tour</title>
+  <meta name="description" content="Real-time certainty. Independently assured."/>
+  <link rel="manifest" href="../manifest.webmanifest"/>
+  <meta name="theme-color" content="#050505"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png"/>
+  <meta property="og:title" content="Dahju demo"/>
+  <meta property="og:description" content="Real-time certainty. Independently assured."/>
+  <meta property="og:image" content="https://pointrock-global.github.io/thames-assurance-demo/icons/og-card.png"/>
+  <style>
+    :root { --or: #F06E1E; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #000; color: #fff; font-family: "Liberation Sans", Arial, Helvetica, sans-serif; }
+    body { display: flex; flex-direction: column; min-height: 100dvh; padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom); }
+    header { text-align: center; padding: 26px 20px 6px; }
+    .brand { font-weight: 700; font-size: 40px; letter-spacing: -0.01em; }
+    .brand .ast { color: var(--or); }
+    .tag { color: var(--or); font-size: 15px; margin-top: 6px; }
+    .track { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 18px 0 6px; }
+    .track::-webkit-scrollbar { display: none; }
+    .slide { flex: 0 0 100%; scroll-snap-align: center; padding: 0 18px; display: flex; flex-direction: column; }
+    .shot { border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 10px 40px rgba(240,110,30,0.12); background: #0a0a0a; aspect-ratio: 1220 / 900; }
+    .shot img { width: 100%; height: 100%; object-fit: cover; object-position: left top; display: block; }
+    .step { color: var(--or); font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin: 18px 0 6px; }
+    h2 { font-size: 22px; line-height: 1.25; }
+    p.copy { font-size: 16px; line-height: 1.5; color: #cfcfcf; margin-top: 8px; }
+    .dots { display: flex; justify-content: center; gap: 10px; padding: 12px 0; }
+    .dots button { width: 10px; height: 10px; border-radius: 50%; border: 0; background: #444; padding: 0; position: relative; }
+    .dots button::after { content: ""; position: absolute; inset: -17px; }
+    .dots button.on { background: var(--or); width: 26px; border-radius: 6px; }
+    .cta { padding: 4px 18px 22px; text-align: center; }
+    .btn { display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; background: var(--or); color: #000; font-weight: 700; font-size: 17px; text-decoration: none; }
+    .note { color: #9a9a9a; font-size: 14px; margin-top: 12px; }
+    .powered { color: #7a7a7a; font-size: 13px; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Dahju<span class="ast">*</span></div>
+    <div class="tag">Real-time certainty. Independently assured.</div>
+  </header>
+
+  <main class="track" id="track">
+    <section class="slide">
+      <div class="shot"><img src="../tour/map.jpg" alt="Portfolio map with every site and its status"/></div>
+      <div class="step">1 of 4 · Portfolio map</div>
+      <h2>Every site, one live picture.</h2>
+      <p class="copy">See the whole programme on one map, with each site rated green, amber or red in real time.</p>
+    </section>
+    <section class="slide">
+      <div class="shot"><img src="../tour/site.jpg" alt="Site dashboard with progress, decisions and contractors" loading="lazy"/></div>
+      <div class="step">2 of 4 · Site dashboard</div>
+      <h2>Open any site and know where it stands.</h2>
+      <p class="copy">Progress, open issues, contractors and the site footprint, all in one screen.</p>
+    </section>
+    <section class="slide">
+      <div class="shot"><img src="../tour/alerts.jpg" alt="Alerts inbox showing items that need a decision" loading="lazy"/></div>
+      <div class="step">3 of 4 · Alerts and decisions</div>
+      <h2>Problems surface early, not at month end.</h2>
+      <p class="copy">Alerts from site photos, the programme and assurance checks land in one inbox, ready for a decision.</p>
+    </section>
+    <section class="slide">
+      <div class="shot"><img src="../tour/assurance.jpg" alt="Independent assurance report" loading="lazy"/></div>
+      <div class="step">4 of 4 · Assurance report</div>
+      <h2>Evidence the Board can trust.</h2>
+      <p class="copy">An independent, verified view of delivery, ready to share from site to boardroom.</p>
+    </section>
+  </main>
+
+  <nav class="dots" id="dots" aria-label="Tour slides"></nav>
+
+  <div class="cta">
+    <a class="btn" href="01-login-dark.html">Open the demo</a>
+    <div class="note">Best viewed on a larger screen.</div>
+    <div class="powered">Powered by PointRock</div>
+  </div>
+
+  <script>
+  (function () {
+    var track = document.getElementById('track');
+    var slides = track.querySelectorAll('.slide');
+    var dots = document.getElementById('dots');
+    slides.forEach(function (s, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Slide ' + (i + 1));
+      b.addEventListener('click', function () { track.scrollTo({ left: s.offsetLeft, behavior: 'smooth' }); });
+      dots.appendChild(b);
+    });
+    function update() {
+      var i = Math.round(track.scrollLeft / track.clientWidth);
+      dots.querySelectorAll('button').forEach(function (b, j) { b.classList.toggle('on', i === j); });
+    }
+    track.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+  </script>
+</body>
+</html>

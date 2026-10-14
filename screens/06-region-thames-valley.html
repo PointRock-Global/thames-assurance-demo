@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html><head><meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Dahju demo · Region view</title>
+  <link rel="manifest" href="../manifest.webmanifest"/>
+  <meta name="theme-color" content="#050505"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="../icons/icon-192.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png"/>
+  <meta name="apple-mobile-web-app-title" content="Dahju"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -198,6 +206,7 @@ html, body { width: 1440px; height: 900px; overflow: hidden; font-family: var(--
 .logout-btn:hover { background:#F4F8FB; color:var(--navy); border-color:rgba(10,37,64,0.22); }
 </style>
 <link rel="stylesheet" href="../nav.css"/>
+<link rel="stylesheet" href="responsive.css"/>
 </head><body data-demo-site="shared">
 
 <svg style="display:none">
@@ -333,7 +342,7 @@ html, body { width: 1440px; height: 900px; overflow: hidden; font-family: var(--
     crossOrigin: true
   }).addTo(map);
 
-  map.fitBounds(bounds, { paddingTopLeft: [420, 20], paddingBottomRight: [20, 20], animate: false });
+  if (window.matchMedia('(max-width: 1199px)').matches) { map.fitBounds(bounds, { padding: [24, 24], animate: false }); } else { map.fitBounds(bounds, { paddingTopLeft: [420, 20], paddingBottomRight: [20, 20], animate: false }); }
 
   // Thames Valley & HC main cluster (teal glow) — Oxford–Reading–Swindon
   var tvPoly = [
@@ -399,11 +408,12 @@ html, body { width: 1440px; height: 900px; overflow: hidden; font-family: var(--
     if (readyFired) return;
     readyFired = true;
     document.documentElement.setAttribute('data-map-ready', '1');
-    document.title = 'MAP_READY';
+    document.documentElement.setAttribute('data-map-ready','1');
   }
   tiles.on('load', function () { setTimeout(markReady, 800); });
   setTimeout(markReady, 4500);
 })();
 </script>
 <script src="../nav.js"></script>
+<script src="responsive.js"></script>
 </body></html>

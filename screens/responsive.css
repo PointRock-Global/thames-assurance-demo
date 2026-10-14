@@ -1,0 +1,152 @@
+/* Responsive layer for phone and tablet.
+   Desktop (>= 1200px) is untouched: every rule here sits inside a max-width query,
+   apart from hiding the injected mobile controls. */
+.rs-menu-btn, .rs-scrim { display: none; }
+
+@media (max-width: 1199px) {
+  html, body {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+  html.live-demo-shell body { box-shadow: none !important; }
+  .demo-badge.rs-badge-inline { position: static !important; order: 99; margin-left: auto; font-size: 9px !important; padding: 3px 8px !important; box-shadow: none !important; }
+  .demo-badge.rs-badge-corner { top: auto !important; bottom: 8px !important; right: auto !important; left: 8px !important; font-size: 9px !important; padding: 3px 8px !important; opacity: .85; }
+  body { -webkit-text-size-adjust: 100%; }
+
+  /* Side nav becomes an off-canvas drawer */
+  .rail {
+    position: fixed !important;
+    top: 0 !important; bottom: 0 !important; left: 0 !important;
+    width: 260px !important; max-width: 82vw;
+    transform: translateX(-105%);
+    transition: transform .22s ease;
+    z-index: 1000 !important;
+    overflow-y: auto;
+  }
+  html.rs-nav-open .rail { transform: none; }
+  .rs-scrim {
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(2,5,10,0.55);
+  }
+  html.rs-nav-open .rs-scrim { display: block; }
+  .rail .nav-item, .rail .logout-btn { min-height: 44px; font-size: 13px !important; }
+
+  .rs-menu-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    position: fixed; top: 6px; left: 8px; z-index: 1001;
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(10,18,32,0.92); color: #fff;
+    border: 1px solid rgba(255,255,255,0.14);
+    cursor: pointer; padding: 0;
+  }
+  .rs-menu-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+  html.rs-nav-open .rs-menu-btn { left: calc(min(260px, 82vw) + 8px); }
+
+  /* Top bar sticks to the top, leaves room for the menu button */
+  .topbar {
+    position: sticky !important;
+    left: auto !important; right: auto !important; top: 0 !important;
+    width: 100% !important;
+    min-height: 56px; height: auto !important;
+    padding: 6px 12px 6px 62px !important;
+    flex-wrap: wrap; row-gap: 6px;
+    z-index: 900 !important;
+  }
+
+  /* Main area flows below the top bar */
+  .main {
+    position: relative !important;
+    inset: auto !important;
+    left: auto !important; right: auto !important; top: auto !important; bottom: auto !important;
+    width: auto !important; height: auto !important; max-width: 100%;
+    overflow: visible !important;
+    padding: 14px !important;
+  }
+  .main > * { min-width: 0; max-width: 100%; }
+  .card, .panel { max-width: 100%; }
+
+  /* Things that filled leftover height in the artboard need a real height now */
+  .mapbody, #site-map, .map-inset { min-height: 280px; }
+  #map { position: relative !important; inset: auto !important; left: 0 !important; width: 100% !important; height: 62vh !important; min-height: 360px; }
+
+  /* Map screens: overlays move below the map */
+  .region-cards { position: static !important; width: auto !important; pointer-events: auto !important; flex-direction: row !important; flex-wrap: wrap; margin-top: 12px; }
+  .region-cards > * { flex: 1 1 260px; }
+  .legend { position: static !important; transform: none !important; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+  .rs-row > * { flex: 1 1 200px !important; min-width: 0 !important; }
+
+  /* Wide tables: scroll inside their card */
+  .rs-scroll-x { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+  .rs-wide { min-width: 680px !important; }
+  .grid-wrap.rs-wide { min-width: 0 !important; overflow-x: auto !important; grid-template-columns: 120px repeat(6, 112px) !important; }
+  .main > .panel { position: relative !important; left: auto !important; top: auto !important; width: auto !important; max-height: none !important; margin-top: 12px; }
+
+  /* Fluid replacements for fixed widths */
+  img, video, canvas, svg { max-width: 100%; }
+  .rs-fluid { width: auto !important; max-width: 100% !important; }
+
+  /* Tablet: equal card grids go 2 across */
+  .rs-cards { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  .rs-cards > * { grid-column: auto !important; }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .main {
+    display: grid !important;
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important;
+    grid-template-rows: none !important;
+    grid-auto-rows: auto !important;
+    gap: 12px !important;
+  }
+  .main > * { grid-column: 1 / -1 !important; grid-row: auto !important; }
+  .main > .rs-half { grid-column: auto !important; }
+}
+
+@media (max-width: 767px) {
+  body { font-size: 15px; }
+  .main {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 12px !important;
+  }
+  .main > * { width: 100% !important; flex: none !important; grid-column: auto !important; grid-row: auto !important; }
+  .rs-cards { grid-template-columns: minmax(0,1fr) !important; }
+  .rs-cards.rs-small { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  .rs-row { flex-wrap: wrap !important; }
+  .hero, .header-card, .hero-card { display: flex !important; flex-wrap: wrap !important; gap: 10px !important; }
+  .hero > *, .header-card > *, .hero-card > * { min-width: 0; max-width: 100%; }
+  .hero-body, .hdr-body { flex: 1 1 100% !important; order: 2; }
+  .alert-row.rs-wide { min-width: 0 !important; grid-template-columns: auto minmax(0,1fr) !important; row-gap: 6px; }
+  .alert-row > :nth-child(n+3) { grid-column: 2 !important; justify-self: start; text-align: left !important; }
+  .rs-hide { display: none !important; }
+  .rs-stack { display: block !important; min-width: 0 !important; padding: 12px 14px !important; }
+  .rs-stack > * { display: flex !important; gap: 10px; justify-content: space-between; align-items: center; text-align: right !important; padding: 3px 0; font-size: 14px !important; }
+  .rs-stack > :first-child { display: block !important; text-align: left !important; font-size: 15px !important; padding-bottom: 6px; }
+  .rs-stack > [data-label]:not(:first-child)::before { content: attr(data-label); text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .6; flex: none; }
+  .rs-stack > :empty { display: none !important; }
+  .rs-site-cards { display: flex; flex-direction: column; gap: 12px; }
+  .rs-site-card { background: #fff; color: #0A2540; border-radius: 14px; border: 1px solid rgba(10,37,64,0.1); overflow: hidden; }
+  .rs-site-card .rs-site-title { display: flex !important; justify-content: space-between; align-items: center; padding: 12px 14px; font-size: 17px; }
+  .rs-kv { display: grid; grid-template-columns: 38% 1fr; align-items: center; border-top: 1px solid rgba(10,37,64,0.08); min-height: 44px; }
+  .rs-k { padding: 8px 12px; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #3A556E; }
+  .rs-kv > .cell { border: 0 !important; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 8px 12px !important; font-size: 14px; }
+  .rs-kv.risk-low .rs-k, .rs-kv.risk-med .rs-k, .rs-kv.risk-high .rs-k, .rs-kv.risk-ext .rs-k { color: inherit; }
+  .doc-stage { padding: 6px !important; overflow: visible !important; }
+  .doc { width: 100% !important; padding: 16px !important; font-size: 14px !important; line-height: 1.5 !important; display: block !important; overflow: visible !important; }
+  .doc > * { margin-bottom: 12px; }
+  .doc * { max-width: 100%; }
+  .rs-doc-1 { grid-template-columns: minmax(0,1fr) !important; }
+  .rs-doc-1 > * { grid-column: auto !important; }
+  .rs-doc-2 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  .doc li, .doc p, .doc td { font-size: 14px !important; }
+  .rs-text { font-size: 15px !important; line-height: 1.45 !important; }
+  .rs-tap { min-height: 44px; min-width: 44px; }
+  .topbar .crumbs { font-size: 13px !important; flex-basis: calc(100% - 10px); }
+  .topbar .top-actions, .topbar .rag-summary { flex-wrap: wrap; }
+  #map { height: 58vh !important; }
+}
