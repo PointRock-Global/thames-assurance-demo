@@ -13,7 +13,8 @@
     overflow-y: auto !important;
   }
   html.live-demo-shell body { box-shadow: none !important; }
-  .demo-badge { top: auto !important; bottom: 10px !important; }
+  .demo-badge.rs-badge-inline { position: static !important; order: 99; margin-left: auto; font-size: 9px !important; padding: 3px 8px !important; box-shadow: none !important; }
+  .demo-badge.rs-badge-corner { top: auto !important; bottom: 8px !important; right: auto !important; left: 8px !important; font-size: 9px !important; padding: 3px 8px !important; opacity: .85; }
   body { -webkit-text-size-adjust: 100%; }
 
   /* Side nav becomes an off-canvas drawer */
@@ -122,6 +123,27 @@
   .hero-body, .hdr-body { flex: 1 1 100% !important; order: 2; }
   .alert-row.rs-wide { min-width: 0 !important; grid-template-columns: auto minmax(0,1fr) !important; row-gap: 6px; }
   .alert-row > :nth-child(n+3) { grid-column: 2 !important; justify-self: start; text-align: left !important; }
+  .rs-hide { display: none !important; }
+  .rs-stack { display: block !important; min-width: 0 !important; padding: 12px 14px !important; }
+  .rs-stack > * { display: flex !important; gap: 10px; justify-content: space-between; align-items: center; text-align: right !important; padding: 3px 0; font-size: 14px !important; }
+  .rs-stack > :first-child { display: block !important; text-align: left !important; font-size: 15px !important; padding-bottom: 6px; }
+  .rs-stack > [data-label]:not(:first-child)::before { content: attr(data-label); text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .6; flex: none; }
+  .rs-stack > :empty { display: none !important; }
+  .rs-site-cards { display: flex; flex-direction: column; gap: 12px; }
+  .rs-site-card { background: #fff; color: #0A2540; border-radius: 14px; border: 1px solid rgba(10,37,64,0.1); overflow: hidden; }
+  .rs-site-card .rs-site-title { display: flex !important; justify-content: space-between; align-items: center; padding: 12px 14px; font-size: 17px; }
+  .rs-kv { display: grid; grid-template-columns: 38% 1fr; align-items: center; border-top: 1px solid rgba(10,37,64,0.08); min-height: 44px; }
+  .rs-k { padding: 8px 12px; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #3A556E; }
+  .rs-kv > .cell { border: 0 !important; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 8px 12px !important; font-size: 14px; }
+  .rs-kv.risk-low .rs-k, .rs-kv.risk-med .rs-k, .rs-kv.risk-high .rs-k, .rs-kv.risk-ext .rs-k { color: inherit; }
+  .doc-stage { padding: 6px !important; overflow: visible !important; }
+  .doc { width: 100% !important; padding: 16px !important; font-size: 14px !important; line-height: 1.5 !important; display: block !important; overflow: visible !important; }
+  .doc > * { margin-bottom: 12px; }
+  .doc * { max-width: 100%; }
+  .rs-doc-1 { grid-template-columns: minmax(0,1fr) !important; }
+  .rs-doc-1 > * { grid-column: auto !important; }
+  .rs-doc-2 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  .doc li, .doc p, .doc td { font-size: 14px !important; }
   .rs-text { font-size: 15px !important; line-height: 1.45 !important; }
   .rs-tap { min-height: 44px; min-width: 44px; }
   .topbar .crumbs { font-size: 13px !important; flex-basis: calc(100% - 10px); }

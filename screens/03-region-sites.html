@@ -345,7 +345,7 @@ html, body { width: 1440px; height: 900px; overflow: hidden; font-family: var(--
   }).addTo(map);
 
   // Pad left so site panel doesn't cover pins; fit London
-  map.fitBounds(bounds, { paddingTopLeft: [420, 20], paddingBottomRight: [20, 20], animate: false });
+  if (window.matchMedia('(max-width: 1199px)').matches) { map.fitBounds(bounds, { padding: [24, 24], animate: false }); } else { map.fitBounds(bounds, { paddingTopLeft: [420, 20], paddingBottomRight: [20, 20], animate: false }); }
 
   var londonPoly = [
     [51.68, -0.48], [51.70, -0.20], [51.69, 0.05], [51.66, 0.22],

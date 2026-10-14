@@ -342,7 +342,7 @@ html, body { width: 1440px; height: 900px; overflow: hidden; font-family: var(--
     crossOrigin: true
   }).addTo(map);
 
-  map.fitBounds(bounds, { paddingTopLeft: [420, 20], paddingBottomRight: [20, 20], animate: false });
+  if (window.matchMedia('(max-width: 1199px)').matches) { map.fitBounds(bounds, { padding: [24, 24], animate: false }); } else { map.fitBounds(bounds, { paddingTopLeft: [420, 20], paddingBottomRight: [20, 20], animate: false }); }
 
   // Thames Valley & HC main cluster (teal glow) — Oxford–Reading–Swindon
   var tvPoly = [

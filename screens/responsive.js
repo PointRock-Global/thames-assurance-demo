@@ -33,6 +33,91 @@
     setTimeout(fixMaps, 300);
   });
 
+  // Laptops 1200 to 1439px: zoom the 1440px artboard to fit. 1440 and up untouched.
+  function fitLaptop() {
+    var w = window.innerWidth, root = document.documentElement;
+    if (w >= 1200 && w < 1440) { root.style.zoom = (w / 1440).toFixed(4); root.classList.add('rs-zoomed'); }
+    else if (root.classList.contains('rs-zoomed')) { root.style.zoom = ''; root.classList.remove('rs-zoomed'); }
+  }
+  fitLaptop();
+  window.addEventListener('resize', fitLaptop);
+
+  // DEMO badge: below 1200px it becomes a small pill inside the top bar
+  function moveBadge() {
+    if (!mq.matches) return;
+    var b = document.querySelector('.demo-badge'), bar = document.querySelector('.topbar');
+    if (!b) return false;
+    b.classList.add(bar ? 'rs-badge-inline' : 'rs-badge-corner');
+    if (bar && b.parentElement !== bar) bar.appendChild(b);
+    return true;
+  }
+
+  // Phone: tables become stacked cards
+  function stackTables() {
+    if (!phone.matches) return;
+    // Row lists with a header row (reports lists)
+    document.querySelectorAll('.list-head').forEach(function (head) {
+      var labels = Array.prototype.map.call(head.children, function (c) { return c.textContent.trim(); });
+      var p = head.parentElement;
+      Array.prototype.forEach.call(p.children, function (row) {
+        if (row === head || getComputedStyle(row).display !== 'grid') return;
+        row.classList.add('rs-stack');
+        Array.prototype.forEach.call(row.children, function (c, i) { if (labels[i]) c.setAttribute('data-label', labels[i]); });
+      });
+      head.classList.add('rs-hide');
+      p.classList.remove('rs-scroll-x');
+    });
+    // Transposed grid (sites portfolio): one card per site
+    var g = document.querySelector('.grid-wrap');
+    if (g) {
+      var kids = Array.prototype.slice.call(g.children), rows = [], cur = null;
+      kids.forEach(function (k) {
+        if (k.classList.contains('lab')) { cur = { lab: k, cells: [] }; rows.push(cur); }
+        else if (cur) cur.cells.push(k);
+      });
+      var n = rows.length ? rows[0].cells.length : 0;
+      if (!n) return;
+      var wrap = document.createElement('div');
+      wrap.className = 'rs-site-cards';
+      for (var i = 0; i < n; i++) {
+        var card = document.createElement('div'); card.className = 'rs-site-card';
+        rows.forEach(function (r, ri) {
+          var orig = r.cells[i]; if (!orig) return;
+          var c = orig.cloneNode(true);
+          c.addEventListener('click', function (e) {
+            var t = e.target.closest('[data-demo-nav]');
+            if (t) { var o = orig.querySelector('[data-demo-nav="' + t.getAttribute('data-demo-nav') + '"]') || orig; o.click(); }
+          });
+          if (ri === 0) { c.classList.add('rs-site-title'); card.appendChild(c); return; }
+          var line = document.createElement('div'); line.className = 'rs-kv ' + (r.lab.getAttribute('class') || '');
+          var l = document.createElement('div'); l.className = 'rs-k'; l.textContent = r.lab.textContent.trim();
+          line.appendChild(l); line.appendChild(c); card.appendChild(line);
+        });
+        wrap.appendChild(card);
+      }
+      g.parentElement.insertBefore(wrap, g);
+      g.classList.add('rs-hide');
+    }
+  }
+
+  // Phone: report preview documents read as one column
+  function docColumn() {
+    if (!phone.matches) return;
+    document.querySelectorAll('.doc *').forEach(function (el) {
+      var cs = getComputedStyle(el);
+      if (cs.display === 'grid' && cs.gridTemplateColumns.split(' ').length > 1) {
+        el.classList.add(el.children.length >= 4 && el.closest('.doc') && /score/i.test(el.className) ? 'rs-doc-2' : 'rs-doc-1');
+      }
+    });
+  }
+
+  ready(function () {
+    var tries = 0;
+    (function t() { if (!moveBadge() && tries++ < 20) setTimeout(t, 150); })();
+    stackTables();
+    docColumn();
+  });
+
   var tagged = false;
   function tag() {
     if (!mq.matches || tagged) return;

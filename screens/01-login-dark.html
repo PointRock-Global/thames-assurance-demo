@@ -64,21 +64,27 @@ html, body { width:1440px; height:900px; overflow:hidden; font-family:Inter,syst
   position:absolute; bottom:28px; left:0; right:0; text-align:center; z-index:2;
   font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(180,200,220,0.35);
 }
+.dahju { font-family: "Liberation Sans", Arial, Helvetica, sans-serif; font-weight: 700; font-size: 46px; line-height: 1; color: #fff; letter-spacing: -0.01em; }
+.dahju .ast { color: #F06E1E; }
+.dahju-tag { font-family: "Liberation Sans", Arial, Helvetica, sans-serif; font-weight: 400; color: #F06E1E; font-size: 14px; margin: 10px 0 6px; }
+.brand-tag { display: flex; align-items: center; justify-content: center; gap: 10px; text-transform: none !important; letter-spacing: 0.04em !important; font-size: 12px !important; color: rgba(220,225,230,0.6) !important; }
+.brand-tag img { height: 22px; width: auto; display: block; }
+@media (max-width: 1199px) { .card { width: min(420px, calc(100vw - 28px)) !important; padding: 32px 22px 28px !important; } .field, .btn { height: 50px !important; font-size: 15px !important; } .card .hint { font-size: 14px !important; } }
 </style>
 <link rel="stylesheet" href="../nav.css"/>
 <link rel="stylesheet" href="responsive.css"/>
 </head><body data-demo-site="shared">
 <div class="login-bg"></div>
 <div class="card">
-  <div class="logo-wrap"><div class="logo-plate"><img src="tw-logo-128.png" alt="Thames Water"/></div></div>
-  <h1>Project Assurance</h1>
-  <div class="hint">Thames Water · secure access</div>
+  <div class="dahju" aria-label="Dahju">Dahju<span class="ast">*</span></div>
+  <div class="dahju-tag">Real-time certainty. Independently assured.</div>
+  <div class="hint">Secure access</div>
   <div class="field"><span>✉</span><span class="ph">Email address</span></div>
   <div class="field"><span>🔒</span><span class="ph">Password</span><span style="opacity:0.5">👁</span></div>
   <button class="btn">Sign in</button>
-  <div class="sso">Sign in with <b>Thames Water SSO</b></div>
+  <div class="sso">Sign in with <b>company SSO</b></div>
 </div>
-<div class="brand-tag">Thames Water · Project Assurance</div>
+<div class="brand-tag"><span>Powered by</span><img src="../icons/pointrock-logo.png" alt="PointRock"/></div>
 <script src="../nav.js"></script>
 <script src="responsive.js"></script>
 </body></html>
