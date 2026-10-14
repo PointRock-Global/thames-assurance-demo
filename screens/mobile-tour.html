@@ -23,24 +23,22 @@
       background: #000 url('bg-welcome.jpg') center / cover no-repeat;
       padding: calc(24px + env(safe-area-inset-top)) 24px calc(28px + env(safe-area-inset-bottom)); text-align: center;
       position: relative; }
-    /* Heavy dark overlay + centred vignette so Dahju / orange stand out; network lights stay faintly visible */
+    /* No centre glow: bg-welcome.jpg is baked near-black in the centre; flat veil only */
     body::before {
       content: "";
       position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background:
-        radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.95) 100%),
-        rgba(0,0,0,0.45);
+      background: rgba(0,0,0,0.2);
     }
     main, footer { position: relative; z-index: 1; }
     main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 520px; }
-    .brand { font-weight: 700; font-size: clamp(56px, 16vw, 96px); line-height: 1; letter-spacing: -0.01em; color: #fff; text-shadow: 0 2px 24px rgba(0,0,0,0.6); }
+    .brand { font-weight: 700; font-size: clamp(56px, 16vw, 96px); line-height: 1; letter-spacing: -0.01em; color: #fff; }
     .brand .ast { color: var(--or); }
-    .tag { font-weight: 400; color: var(--or); font-size: clamp(17px, 4.6vw, 24px); margin-top: 16px; text-shadow: 0 1px 10px rgba(0,0,0,0.8); }
+    .tag { font-weight: 400; color: var(--or); font-size: clamp(17px, 4.6vw, 24px); margin-top: 16px; }
     .btn { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 340px); min-height: 54px; margin-top: 44px;
       border-radius: 12px; background: var(--or); color: #fff; font-weight: 700; font-size: 17px; text-decoration: none;
-      box-shadow: 0 8px 22px rgba(240,110,30,0.35); transition: background .15s; }
+      transition: background .15s; }
     .btn:hover, .btn:focus-visible { background: #FF8236; }
-    .note { color: #fff; font-size: 14px; margin-top: 16px; text-shadow: 0 1px 8px rgba(0,0,0,0.8); }
+    .note { color: #fff; font-size: 14px; margin-top: 16px; }
     footer { display: flex; align-items: center; justify-content: center; gap: 10px; color: #fff; font-size: 13px; letter-spacing: 0.04em; }
     footer img { height: 24px; width: auto; display: block; }
   </style>
