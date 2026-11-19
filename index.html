@@ -4,33 +4,35 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Dahju demo</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dahju">
+<meta property="og:title" content="Dahju: capital programme evidence">
+<meta property="og:description" content="Independent evidence for capital programmes, a clickable example.">
+<meta property="og:url" content="https://pointrock-global.github.io/thames-assurance-demo/">
+<meta property="og:image" content="https://pointrock-global.github.io/thames-assurance-demo/icons/og-image-compact.png">
+<meta property="og:image:width" content="400">
+<meta property="og:image:height" content="400">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dahju: capital programme evidence">
+<meta name="twitter:description" content="Independent evidence for capital programmes, a clickable example.">
+<meta name="twitter:image" content="https://pointrock-global.github.io/thames-assurance-demo/icons/og-image-compact.png">
+
   <script>
-    // Phones get the welcome page first; tablets and computers go straight to sign in.
+    // Phones get the short tour first; tablets and computers go straight to sign in.
     (function () {
       var phone = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
       location.replace(phone ? 'screens/mobile-tour.html' : 'screens/01-login-dark.html');
     })();
   </script>
   <noscript><meta http-equiv="refresh" content="0; url=screens/01-login-dark.html"/></noscript>
-  <meta name="description" content="Real-time certainty. Independently assured."/>
+  <meta name="description" content="Independent evidence for capital programmes, a clickable example."/>
   <link rel="manifest" href="manifest.webmanifest"/>
   <meta name="theme-color" content="#050505"/>
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"/>
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"/>
   <meta name="apple-mobile-web-app-title" content="Dahju"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://pointrock-global.github.io/thames-assurance-demo/"/>
-  <meta property="og:title" content="Dahju demo"/>
-  <meta property="og:description" content="Real-time certainty. Independently assured."/>
-  <meta property="og:image" content="https://pointrock-global.github.io/thames-assurance-demo/icons/og-card.png"/>
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Dahju demo"/>
-  <meta name="twitter:description" content="Real-time certainty. Independently assured."/>
-  <meta name="twitter:image" content="https://pointrock-global.github.io/thames-assurance-demo/icons/og-card.png"/>
-  <style>
+<style>
     html, body { height: 100%; margin: 0; font-family: "Liberation Sans", Arial, sans-serif; background: #000; color: #fff; }
     .wrap { min-height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 32px; box-sizing: border-box; }
     .brand { font-weight: 700; font-size: 40px; }
@@ -44,7 +46,7 @@
       <div class="brand">Dahju<span>*</span></div>
       <p>Opening the demo.</p>
       <a href="screens/01-login-dark.html">Open the demo</a>
-      <a href="screens/mobile-tour.html">Welcome page</a>
+      <a href="screens/mobile-tour.html">Quick phone tour</a>
     </div>
   </div>
 </body>
